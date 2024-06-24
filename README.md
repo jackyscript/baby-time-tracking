@@ -1,6 +1,6 @@
 # baby-time-tracking
 
-This template should help get you started developing with Vue 3 in Vite.
+A time tracking app to track the activities of our little ones...
 
 ## Recommended IDE Setup
 
