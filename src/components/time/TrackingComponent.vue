@@ -82,7 +82,8 @@ function removeRecord(key) {
   <div class="time-tracker">
     <label for="activities">What did your baby do?</label>
     <select name="activities" id="activities" v-model="babyActivity">
-      <option v-for="(activityType, index) in activityTypes" :key="index" @value="activityType">
+      <option value="" disabled selected>Select the activity</option>
+      <option v-for="(activityType, index) in activityTypes" :key="index" :value="activityType">
         {{ activityType }}
       </option>
     </select>
