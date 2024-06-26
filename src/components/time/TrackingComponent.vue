@@ -2,10 +2,13 @@
 import { ref } from 'vue'
 import RecordsComponent from './RecordsComponent.vue'
 import { v4 as uuid } from 'uuid'
+import {
+  activityTypes,
+  defaultTitle,
+  editTitle,
+  detailsPlaceHolder
+} from '@/constants/LangConstants.js'
 
-const defaultTitle = 'Baby time tracking'
-const editTitle = 'Forgot something?'
-const activityTypes = ['Was breastfed', 'Was fed', 'Playing', 'Crying', 'Took a nap']
 let formTitle = ref('')
 formTitle.value = defaultTitle
 
@@ -102,7 +105,7 @@ function removeRecord(key) {
       id="notes"
       name="notes-text"
       rows="10"
-      placeholder="Said a new word, spit a small amount of milk, laughing with daddy..."
+      v-bind:placeholder="detailsPlaceHolder"
       maxlength="1000"
       v-model="details"
     ></textarea>
