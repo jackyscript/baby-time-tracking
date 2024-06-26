@@ -105,7 +105,7 @@ function removeRecord(key) {
       id="notes"
       name="notes-text"
       rows="10"
-      v-bind:placeholder="detailsPlaceHolder"
+      :placeholder="detailsPlaceHolder"
       maxlength="1000"
       v-model="details"
     ></textarea>
