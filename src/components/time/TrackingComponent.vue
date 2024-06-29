@@ -29,11 +29,11 @@ function setTimeRecord() {
   let id = activeRecord === '' ? uuid() : activeRecord
 
   let currentRecord = {
-    entryDate: entryDate.value,
-    beginTime: beginTime.value,
-    endTime: endTime.value,
-    babyActivity: babyActivity.value,
-    details: details.value
+    entryDate: { entryId: uuid(), entryValue: entryDate.value },
+    beginTime: { entryId: uuid(), entryValue: beginTime.value },
+    endTime: { entryId: uuid(), entryValue: endTime.value },
+    babyActivity: { entryId: uuid(), entryValue: babyActivity.value },
+    details: { entryId: uuid(), entryValue: details.value }
   }
 
   timeRecords.value[id] = currentRecord
@@ -52,11 +52,11 @@ function cancel() {
 function editRecord(key) {
   activeRecord = key
   ;(function setRecordToForm(timeRecord) {
-    beginTime.value = timeRecord.beginTime
-    endTime.value = timeRecord.endTime
-    entryDate.value = timeRecord.entryDate
-    babyActivity.value = timeRecord.babyActivity
-    details.value = timeRecord.details
+    beginTime.value = timeRecord.beginTime.entryValue
+    endTime.value = timeRecord.endTime.entryValue
+    entryDate.value = timeRecord.entryDate.entryValue
+    babyActivity.value = timeRecord.babyActivity.entryValue
+    details.value = timeRecord.details.entryValue
   })(timeRecords.value[activeRecord])
 
   formTitle.value = LangConstants.editTitle
