@@ -4,4 +4,11 @@ const activityTypes = ['Was breastfed', 'Was fed', 'Playing', 'Crying', 'Took a 
 const detailsPlaceHolder =
   'For instance, said a new word, spit a small amount of milk, laughing with daddy...'
 
-export { defaultTitle, editTitle, activityTypes, detailsPlaceHolder }
+const LangConstants = {
+  defaultTitle,
+  editTitle,
+  activityTypes,
+  detailsPlaceHolder
+}
+
+export { LangConstants }

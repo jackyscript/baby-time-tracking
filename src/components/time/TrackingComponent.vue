@@ -2,15 +2,10 @@
 import { ref } from 'vue'
 import RecordsComponent from './RecordsComponent.vue'
 import { v4 as uuid } from 'uuid'
-import {
-  activityTypes,
-  defaultTitle,
-  editTitle,
-  detailsPlaceHolder
-} from '@/constants/LangConstants.js'
+import { LangConstants } from '@/constants/LangConstants.js'
 
 let formTitle = ref('')
-formTitle.value = defaultTitle
+formTitle.value = LangConstants.defaultTitle
 
 let entryDate = ref('')
 let beginTime = ref('')
@@ -44,14 +39,14 @@ function setTimeRecord() {
   timeRecords.value[id] = currentRecord
   activeRecord = ''
 
-  formTitle.value = defaultTitle
+  formTitle.value = LangConstants.defaultTitle
 }
 
 function cancel() {
   babyActivity.value = ''
   activeRecord = ''
 
-  formTitle.value = defaultTitle
+  formTitle.value = LangConstants.defaultTitle
 }
 
 function editRecord(key) {
@@ -64,13 +59,13 @@ function editRecord(key) {
     details.value = timeRecord.details
   })(timeRecords.value[activeRecord])
 
-  formTitle.value = editTitle
+  formTitle.value = LangConstants.editTitle
 }
 
 function removeRecord(key) {
   delete timeRecords.value[key]
 
-  formTitle.value = defaultTitle
+  formTitle.value = LangConstants.defaultTitle
 }
 </script>
 
@@ -90,7 +85,11 @@ function removeRecord(key) {
     <label for="activities">What did your baby do?</label>
     <select name="activities" id="activities" v-model="babyActivity">
       <option value="" disabled selected>Select the activity</option>
-      <option v-for="(activityType, index) in activityTypes" :key="index" :value="activityType">
+      <option
+        v-for="(activityType, index) in LangConstants.activityTypes"
+        :key="index"
+        :value="activityType"
+      >
         {{ activityType }}
       </option>
     </select>
@@ -109,17 +108,19 @@ function removeRecord(key) {
       id="notes"
       name="notes-text"
       rows="10"
-      :placeholder="detailsPlaceHolder"
+      :placeholder="LangConstants.detailsPlaceHolder"
       maxlength="1000"
       v-model="details"
     ></textarea>
   </form>
 
-  <RecordsComponent
-    :timeRecords="timeRecords"
-    @edit-record="editRecord"
-    @remove-record="removeRecord"
-  />
+  <aside>
+    <RecordsComponent
+      :timeRecords="timeRecords"
+      @edit-record="editRecord"
+      @remove-record="removeRecord"
+    />
+  </aside>
 </template>
 
 <style scoped>
