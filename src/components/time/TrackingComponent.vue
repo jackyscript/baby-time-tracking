@@ -2,12 +2,10 @@
 import { ref } from 'vue'
 import RecordsComponent from './RecordsComponent.vue'
 import { v4 as uuid } from 'uuid'
+import { LangConstants } from '@/constants/LangConstants.js'
 
-const defaultTitle = 'Baby time tracking'
-const editTitle = 'Forgot something?'
-const activityTypes = ['Was breastfed', 'Was fed', 'Playing', 'Crying', 'Took a nap']
 let formTitle = ref('')
-formTitle.value = defaultTitle
+formTitle.value = LangConstants.defaultTitle
 
 let entryDate = ref('')
 let beginTime = ref('')
@@ -31,58 +29,67 @@ function setTimeRecord() {
   let id = activeRecord === '' ? uuid() : activeRecord
 
   let currentRecord = {
-    entryDate: entryDate.value,
-    beginTime: beginTime.value,
-    endTime: endTime.value,
-    babyActivity: babyActivity.value,
-    details: details.value
+    entryDate: { entryId: uuid(), entryValue: entryDate.value },
+    beginTime: { entryId: uuid(), entryValue: beginTime.value },
+    endTime: { entryId: uuid(), entryValue: endTime.value },
+    babyActivity: { entryId: uuid(), entryValue: babyActivity.value },
+    details: { entryId: uuid(), entryValue: details.value }
   }
 
   timeRecords.value[id] = currentRecord
   activeRecord = ''
 
-  formTitle.value = defaultTitle
+  formTitle.value = LangConstants.defaultTitle
 }
 
 function cancel() {
   babyActivity.value = ''
   activeRecord = ''
 
-  formTitle.value = defaultTitle
+  formTitle.value = LangConstants.defaultTitle
 }
 
 function editRecord(key) {
   activeRecord = key
   ;(function setRecordToForm(timeRecord) {
-    beginTime.value = timeRecord.beginTime
-    endTime.value = timeRecord.endTime
-    entryDate.value = timeRecord.entryDate
-    babyActivity.value = timeRecord.babyActivity
-    details.value = timeRecord.details
+    beginTime.value = timeRecord.beginTime.entryValue
+    endTime.value = timeRecord.endTime.entryValue
+    entryDate.value = timeRecord.entryDate.entryValue
+    babyActivity.value = timeRecord.babyActivity.entryValue
+    details.value = timeRecord.details.entryValue
   })(timeRecords.value[activeRecord])
 
-  formTitle.value = editTitle
+  formTitle.value = LangConstants.editTitle
 }
 
 function removeRecord(key) {
   delete timeRecords.value[key]
 
-  formTitle.value = defaultTitle
+  formTitle.value = LangConstants.defaultTitle
 }
 </script>
 
 <template>
-  <div class="flex-container">
+  <aside role="toolbar" class="flex-container">
     <div class="flex-item">
-      <button title="Save this!" @click="setTimeRecord">💾</button>
-      <button title="Cancel" @click="cancel">❌</button>
+      <button role="button" title="Save my record" @click="setTimeRecord">
+        <span>Save record</span>
+      </button>
+      <button role="button" title="Cancel current record" @click="cancel">
+        <span>Cancel</span>
+      </button>
     </div>
-  </div>
-  <h1>{{ formTitle }}</h1>
-  <div class="time-tracker">
+  </aside>
+  <h2>{{ formTitle }}</h2>
+  <form role="form" class="time-tracker">
     <label for="activities">What did your baby do?</label>
     <select name="activities" id="activities" v-model="babyActivity">
-      <option v-for="(activityType, index) in activityTypes" :key="index" @value="activityType">
+      <option value="" disabled selected>Select the activity</option>
+      <option
+        v-for="(activityType, index) in LangConstants.activityTypes"
+        :key="index"
+        :value="activityType"
+      >
         {{ activityType }}
       </option>
     </select>
@@ -101,17 +108,19 @@ function removeRecord(key) {
       id="notes"
       name="notes-text"
       rows="10"
-      placeholder="Said a new word, spit a small amount of milk, laughing with daddy..."
+      :placeholder="LangConstants.detailsPlaceHolder"
       maxlength="1000"
       v-model="details"
     ></textarea>
-  </div>
+  </form>
 
-  <RecordsComponent
-    :timeRecords="timeRecords"
-    @edit-record="editRecord"
-    @remove-record="removeRecord"
-  />
+  <aside>
+    <RecordsComponent
+      :timeRecords="timeRecords"
+      @edit-record="editRecord"
+      @remove-record="removeRecord"
+    />
+  </aside>
 </template>
 
 <style scoped>
@@ -158,5 +167,9 @@ textarea:not([cols]) {
 textarea {
   margin-right: auto;
   resize: none;
+}
+
+button {
+  cursor: pointer;
 }
 </style>
