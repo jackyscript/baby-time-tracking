@@ -16,57 +16,102 @@ const onHandle = (action, key) => {
 </script>
 
 <template>
-  <h3>Summary:</h3>
-  <div class="summary-table-header">
-    <div>Activity</div>
-    <div>Entry date</div>
-    <div>Start</div>
-    <div>End</div>
-    <div>Details</div>
-    <div>Action</div>
-  </div>
+  <h3>Activity summary:</h3>
   <div class="summary-table">
     <div class="timekeeper-entry" v-for="(record, key) in timeRecords" :key="record.id">
-      <div>{{ record.babyActivity }}</div>
-      <div>{{ record.entryDate }}</div>
-      <div>{{ record.beginTime }}</div>
-      <div>{{ record.endTime }}</div>
-      <div>{{ record.details }}</div>
+      <div>Activity: {{ record.babyActivity }}</div>
+      <div>Entry date: {{ record.entryDate }}</div>
+      <div>Start: {{ record.beginTime }}</div>
+      <div>End: {{ record.endTime }}</div>
+      <div class="details-entry">Details: {{ record.details }}</div>
       <div>
-        <span class="edit-entry" title="Click to edit this record" @click="handleEdit(key)"
-          >🖊</span
+        <button
+          role="button"
+          class="edit-entry"
+          title="Click to edit this record"
+          @click="handleEdit(key)"
         >
-        <span class="remove-entry" title="Click to remove this record" @click="handleRemove(key)"
-          >❌</span
+          Edit record
+        </button>
+        <button
+          role="button"
+          class="remove-entry"
+          title="Click to remove this record"
+          @click="handleRemove(key)"
         >
+          Delete record
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.summary-table-header {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-}
-
-.summary-table-header div {
-  font-weight: bold;
-}
-
 .timekeeper-entry:nth-child(odd) {
   background-color: gainsboro;
 }
 
-.timekeeper-entry {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+.details-entry {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .timekeeper-entry {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .timekeeper-entry {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .timekeeper-entry {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .timekeeper-entry {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .timekeeper-entry {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
 }
 
 .edit-entry:hover {

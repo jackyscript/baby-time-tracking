@@ -75,14 +75,18 @@ function removeRecord(key) {
 </script>
 
 <template>
-  <div class="flex-container">
+  <aside role="toolbar" class="flex-container">
     <div class="flex-item">
-      <button title="Save this!" @click="setTimeRecord">💾</button>
-      <button title="Cancel" @click="cancel">❌</button>
+      <button role="button" title="Save my record" @click="setTimeRecord">
+        <span>Save record</span>
+      </button>
+      <button role="button" title="Cancel current record" @click="cancel">
+        <span>Cancel</span>
+      </button>
     </div>
-  </div>
-  <h1>{{ formTitle }}</h1>
-  <div class="time-tracker">
+  </aside>
+  <h2>{{ formTitle }}</h2>
+  <form role="form" class="time-tracker">
     <label for="activities">What did your baby do?</label>
     <select name="activities" id="activities" v-model="babyActivity">
       <option value="" disabled selected>Select the activity</option>
@@ -109,7 +113,7 @@ function removeRecord(key) {
       maxlength="1000"
       v-model="details"
     ></textarea>
-  </div>
+  </form>
 
   <RecordsComponent
     :timeRecords="timeRecords"
@@ -162,5 +166,9 @@ textarea:not([cols]) {
 textarea {
   margin-right: auto;
   resize: none;
+}
+
+button {
+  cursor: pointer;
 }
 </style>

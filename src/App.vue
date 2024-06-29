@@ -3,7 +3,6 @@ import TrackingComponent from './components/time/TrackingComponent.vue'
 </script>
 
 <template>
-  <div>
-    <TrackingComponent></TrackingComponent>
-  </div>
+  <h1>Baby time tracking</h1>
+  <TrackingComponent></TrackingComponent>
 </template>
