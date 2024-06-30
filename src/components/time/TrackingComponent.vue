@@ -23,7 +23,8 @@ entryDate.value = currentDay
 beginTime.value = currentTime
 endTime.value = currentTime
 
-const timeRecords = ref({})
+const saveToLocalStorageKey = 'savedRecords'
+const timeRecords = ref(JSON.parse(localStorage.getItem(saveToLocalStorageKey) ?? '{}'))
 
 function addRecord() {
   let id = activeRecord === '' ? uuid() : activeRecord
@@ -42,8 +43,13 @@ function addRecord() {
   formTitle.value = LangConstants.defaultTitle
 }
 
+function saveRecords() {
+  localStorage.setItem(saveToLocalStorageKey, JSON.stringify(timeRecords.value))
+}
+
 function cancel() {
   babyActivity.value = ''
+
   activeRecord = ''
 
   formTitle.value = LangConstants.defaultTitle
@@ -77,6 +83,9 @@ function removeRecord(key) {
       </button>
       <button role="button" title="Cancel current record" @click="cancel">
         <span>Cancel</span>
+      </button>
+      <button role="button" title="Save all records" @click="saveRecords">
+        <span>Save all</span>
       </button>
     </div>
   </aside>
