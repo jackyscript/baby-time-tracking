@@ -25,7 +25,7 @@ endTime.value = currentTime
 
 const timeRecords = ref({})
 
-function setTimeRecord() {
+function addRecord() {
   let id = activeRecord === '' ? uuid() : activeRecord
 
   let currentRecord = {
@@ -72,8 +72,8 @@ function removeRecord(key) {
 <template>
   <aside role="toolbar" class="flex-container">
     <div class="flex-item">
-      <button role="button" title="Save my record" @click="setTimeRecord">
-        <span>Save record</span>
+      <button role="button" title="Add this record" @click="addRecord">
+        <span>Add</span>
       </button>
       <button role="button" title="Cancel current record" @click="cancel">
         <span>Cancel</span>
