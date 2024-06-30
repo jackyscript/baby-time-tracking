@@ -47,6 +47,10 @@ function saveRecords() {
   localStorage.setItem(saveToLocalStorageKey, JSON.stringify(timeRecords.value))
 }
 
+function deleteRecords() {
+  localStorage.removeItem(saveToLocalStorageKey)
+}
+
 function cancel() {
   babyActivity.value = ''
 
@@ -86,6 +90,9 @@ function removeRecord(key) {
       </button>
       <button role="button" title="Save all records" @click="saveRecords">
         <span>Save all</span>
+      </button>
+      <button role="button" title="Delete all records" @click="deleteRecords">
+        <span>Delete all</span>
       </button>
     </div>
   </aside>
