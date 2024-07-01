@@ -23,7 +23,8 @@ entryDate.value = currentDay
 beginTime.value = currentTime
 endTime.value = currentTime
 
-const timeRecords = ref({})
+const saveToLocalStorageKey = 'savedRecords'
+const timeRecords = ref(JSON.parse(localStorage.getItem(saveToLocalStorageKey) ?? '{}'))
 
 function addRecord() {
   let id = activeRecord === '' ? uuid() : activeRecord
@@ -42,8 +43,17 @@ function addRecord() {
   formTitle.value = LangConstants.defaultTitle
 }
 
+function saveRecords() {
+  localStorage.setItem(saveToLocalStorageKey, JSON.stringify(timeRecords.value))
+}
+
+function deleteRecords() {
+  localStorage.removeItem(saveToLocalStorageKey)
+}
+
 function cancel() {
   babyActivity.value = ''
+
   activeRecord = ''
 
   formTitle.value = LangConstants.defaultTitle
@@ -71,17 +81,22 @@ function removeRecord(key) {
 
 <template>
   <aside role="toolbar" class="flex-container">
-    <div class="flex-item">
-      <button role="button" title="Add this record" @click="addRecord">
-        <span>Add</span>
-      </button>
-      <button role="button" title="Cancel current record" @click="cancel">
-        <span>Cancel</span>
-      </button>
-    </div>
+    <button class="flex-item" role="button" title="Add this record" @click="addRecord">
+      <span>Add</span>
+    </button>
+    <button class="flex-item" role="button" title="Cancel current record" @click="cancel">
+      <span>Cancel</span>
+    </button>
+    <button class="flex-item" role="button" title="Save all records" @click="saveRecords">
+      <span>Save all</span>
+    </button>
+    <button class="flex-item" role="button" title="Delete all records" @click="deleteRecords">
+      <span>Delete all</span>
+    </button>
   </aside>
+  <hr />
   <h2>{{ formTitle }}</h2>
-  <form role="form" class="time-tracker">
+  <form role="form">
     <label for="activities">What did your baby do?</label>
     <select name="activities" id="activities" v-model="babyActivity">
       <option value="" disabled selected>Select the activity</option>
@@ -124,52 +139,13 @@ function removeRecord(key) {
 </template>
 
 <style scoped>
-.time-tracker-header {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(1, 1fr);
-  column-gap: 300px;
-}
-
 .flex-container {
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   justify-content: flex-end;
-  align-content: stretch;
-  align-items: flex-start;
-}
-
-.flex-item:nth-child(1) {
-  order: 0;
-  flex: 0 1 auto;
-  align-self: auto;
-}
-
-.time-tracker {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  column-gap: 0px;
-  row-gap: 1vmin;
-}
-
-label {
-  margin: 0px;
-}
-
-textarea:not([cols]) {
-  width: 100%;
+  gap: 10px;
 }
 
 textarea {
-  margin-right: auto;
   resize: none;
-}
-
-button {
-  cursor: pointer;
 }
 </style>
