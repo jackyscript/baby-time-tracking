@@ -41,9 +41,26 @@ const onHandle = (action, key) => {
       ><output :id="record.details.entryId">{{ record.details.entryValue }}</output>
     </li>
     <li>
-      <button role="button" title="Click to edit this record" @click="handleEdit(key)">Edit</button>
-      <button role="button" title="Click to delete this record" @click="handleRemove(key)">
-        Delete
+      <button role="button" title="Edit this record" @click="handleEdit(key)">
+        <img
+          aria-hidden="true"
+          src="../../assets/icons/edit.svg"
+          alt="Edit"
+          width="30"
+          height="30"
+        />
+        <span hidden>Edit</span>
+      </button>
+
+      <button role="button" title="Delete this record" @click="handleRemove(key)">
+        <img
+          aria-hidden="true"
+          src="../../assets/icons/delete.svg"
+          alt="Delete"
+          width="30"
+          height="30"
+        />
+        <span hidden>Delete</span>
       </button>
     </li>
   </ul>

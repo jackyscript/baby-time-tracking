@@ -83,22 +83,50 @@ function removeRecord(key) {
   <menu role="toolbar" class="flex-container">
     <li>
       <button class="flex-item" role="button" title="Add this record" @click="addRecord">
-        <span>Add</span>
+        <img
+          aria-hidden="true"
+          src="../../assets/icons/add.svg"
+          alt="Add entry"
+          width="30"
+          height="30"
+        />
+        <span hidden>Add</span>
       </button>
     </li>
     <li>
       <button class="flex-item" role="button" title="Cancel current record" @click="cancel">
-        <span>Cancel</span>
+        <img
+          aria-hidden="true"
+          src="../../assets/icons/cancel.svg"
+          alt="Cancel"
+          width="30"
+          height="30"
+        />
+        <span hidden>Cancel</span>
       </button>
     </li>
     <li>
       <button class="flex-item" role="button" title="Save all records" @click="saveRecords">
-        <span>Save all</span>
+        <img
+          aria-hidden="true"
+          src="../../assets/icons/save.svg"
+          alt="Save all"
+          width="30"
+          height="30"
+        />
+        <span hidden>Save all</span>
       </button>
     </li>
     <li>
       <button class="flex-item" role="button" title="Delete all records" @click="deleteRecords">
-        <span>Delete all</span>
+        <img
+          aria-hidden="true"
+          src="../../assets/icons/delete.svg"
+          alt="Delete all"
+          width="30"
+          height="30"
+        />
+        <span hidden>Delete all</span>
       </button>
     </li>
   </menu>
