@@ -16,7 +16,7 @@ const onHandle = (action, key) => {
 </script>
 
 <template>
-  <h3>Activity summary:</h3>
+  <h3>Activity log</h3>
   <ul tabindex="0" class="timekeeper-entry" v-for="(record, key) in timeRecords" :key="record.id">
     <li>
       <label :for="record.babyActivity.entryId">Activity:</label

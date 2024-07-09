@@ -80,21 +80,28 @@ function removeRecord(key) {
 </script>
 
 <template>
-  <aside role="toolbar" class="flex-container">
-    <button class="flex-item" role="button" title="Add this record" @click="addRecord">
-      <span>Add</span>
-    </button>
-    <button class="flex-item" role="button" title="Cancel current record" @click="cancel">
-      <span>Cancel</span>
-    </button>
-    <button class="flex-item" role="button" title="Save all records" @click="saveRecords">
-      <span>Save all</span>
-    </button>
-    <button class="flex-item" role="button" title="Delete all records" @click="deleteRecords">
-      <span>Delete all</span>
-    </button>
-  </aside>
-  <hr />
+  <menu role="toolbar" class="flex-container">
+    <li>
+      <button class="flex-item" role="button" title="Add this record" @click="addRecord">
+        <span>Add</span>
+      </button>
+    </li>
+    <li>
+      <button class="flex-item" role="button" title="Cancel current record" @click="cancel">
+        <span>Cancel</span>
+      </button>
+    </li>
+    <li>
+      <button class="flex-item" role="button" title="Save all records" @click="saveRecords">
+        <span>Save all</span>
+      </button>
+    </li>
+    <li>
+      <button class="flex-item" role="button" title="Delete all records" @click="deleteRecords">
+        <span>Delete all</span>
+      </button>
+    </li>
+  </menu>
   <h2>{{ formTitle }}</h2>
   <form role="form">
     <label for="activities">What did your baby do?</label>
@@ -147,5 +154,11 @@ function removeRecord(key) {
 
 textarea {
   resize: none;
+}
+
+menu {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
 }
 </style>
