@@ -17,13 +17,7 @@ const onHandle = (action, key) => {
 
 <template>
   <h3>Activity summary:</h3>
-  <ul
-    tabindex="0"
-    class="timekeeper-entry"
-    role="group"
-    v-for="(record, key) in timeRecords"
-    :key="record.id"
-  >
+  <ul tabindex="0" class="timekeeper-entry" v-for="(record, key) in timeRecords" :key="record.id">
     <li>
       <label :for="record.babyActivity.entryId">Activity:</label
       ><output :id="record.babyActivity.entryId">{{ record.babyActivity.entryValue }}</output>
