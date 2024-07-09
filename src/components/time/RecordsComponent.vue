@@ -50,10 +50,6 @@ const onHandle = (action, key) => {
 </template>
 
 <style scoped>
-.timekeeper-entry:nth-child(odd) {
-  background-color: gainsboro;
-}
-
 ul.timekeeper-entry {
   list-style-type: none; /* Remove bullets */
   padding: 0; /* Remove padding */
