@@ -2,10 +2,19 @@
 import { ref } from 'vue'
 import RecordsComponent from './RecordsComponent.vue'
 import { v4 as uuid } from 'uuid'
-import { LangConstants } from '@/constants/LangConstants.js'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
+const activityTypes = [
+  t('main.activity.wasBreastFed'),
+  t('main.activity.wasFed'),
+  t('main.activity.playing'),
+  t('main.activity.crying'),
+  t('main.activity.tookANap')
+]
 
 let formTitle = ref('')
-formTitle.value = LangConstants.defaultTitle
+formTitle.value = t('main.title')
 
 let entryDate = ref('')
 let beginTime = ref('')
@@ -40,7 +49,7 @@ function addRecord() {
   timeRecords.value[id] = currentRecord
   activeRecord = ''
 
-  formTitle.value = LangConstants.defaultTitle
+  formTitle.value = t('main.title')
 }
 
 function saveRecords() {
@@ -56,7 +65,7 @@ function cancel() {
 
   activeRecord = ''
 
-  formTitle.value = LangConstants.defaultTitle
+  formTitle.value = t('main.title')
 }
 
 function editRecord(key) {
@@ -69,96 +78,82 @@ function editRecord(key) {
     details.value = timeRecord.details.entryValue
   })(timeRecords.value[activeRecord])
 
-  formTitle.value = LangConstants.editTitle
+  formTitle.value = t('main.edit.title')
 }
 
 function removeRecord(key) {
   delete timeRecords.value[key]
 
-  formTitle.value = LangConstants.defaultTitle
+  formTitle.value = t.main.title
 }
 </script>
 
 <template>
   <menu role="toolbar" class="flex-container">
     <li>
-      <button class="flex-item" role="button" title="Add this record" @click="addRecord">
-        <img
-          aria-hidden="true"
-          src="../../assets/icons/add.svg"
-          alt="Add entry"
-          width="30"
-          height="30"
-        />
-        <span hidden>Add</span>
+      <button class="flex-item" role="button" :title="t('toolbar.title.add')" @click="addRecord">
+        <img aria-hidden="true" src="../../assets/icons/add.svg" :alt="t('toolbar.add')" />
+        <span hidden>{{ t('toolbar.add') }}</span>
       </button>
     </li>
     <li>
-      <button class="flex-item" role="button" title="Cancel current record" @click="cancel">
-        <img
-          aria-hidden="true"
-          src="../../assets/icons/cancel.svg"
-          alt="Cancel"
-          width="30"
-          height="30"
-        />
-        <span hidden>Cancel</span>
+      <button class="flex-item" role="button" :title="t('toolbar.title.cancel')" @click="cancel">
+        <img aria-hidden="true" src="../../assets/icons/cancel.svg" :alt="t('toolbar.cancel')" />
+        <span hidden>{{ t('toolbar.cancel') }}</span>
       </button>
     </li>
     <li>
-      <button class="flex-item" role="button" title="Save all records" @click="saveRecords">
-        <img
-          aria-hidden="true"
-          src="../../assets/icons/save.svg"
-          alt="Save all"
-          width="30"
-          height="30"
-        />
-        <span hidden>Save all</span>
+      <button
+        class="flex-item"
+        role="button"
+        :title="t('toolbar.title.saveAll')"
+        @click="saveRecords"
+      >
+        <img aria-hidden="true" src="../../assets/icons/save.svg" :alt="t('toolbar.saveAll')" />
+        <span hidden>{{ t('toolbar.saveAll') }}</span>
       </button>
     </li>
     <li>
-      <button class="flex-item" role="button" title="Delete all records" @click="deleteRecords">
+      <button
+        class="flex-item"
+        role="button"
+        :title="t('toolbar.title.deleteAll')"
+        @click="deleteRecords"
+      >
         <img
           aria-hidden="true"
           src="../../assets/icons/delete.svg"
-          alt="Delete all"
-          width="30"
-          height="30"
+          alt="{{ t('toolbar.deleteAll') }}"
         />
-        <span hidden>Delete all</span>
+        <span hidden>{{ t('toolbar.deleteAll') }}</span>
       </button>
     </li>
   </menu>
   <h2>{{ formTitle }}</h2>
   <form role="form">
-    <label for="activities">What did your baby do?</label>
+    <label for="activities">{{ t('main.form.label.activity') }}</label>
     <select name="activities" id="activities" v-model="babyActivity">
-      <option value="" disabled selected>Select the activity</option>
-      <option
-        v-for="(activityType, index) in LangConstants.activityTypes"
-        :key="index"
-        :value="activityType"
-      >
+      <option value="" disabled selected>{{ t('main.activityPlaceHolder') }}</option>
+      <option v-for="(activityType, index) in activityTypes" :key="index" :value="activityType">
         {{ activityType }}
       </option>
     </select>
 
-    <label for="current-day">On which day:</label>
+    <label for="current-day">{{ t('main.form.label.date') }}:</label>
     <input type="date" id="current-day" name="time-tracker-day" v-model="entryDate" />
 
-    <label for="start-time">When did it start?</label>
+    <label for="start-time">{{ t('main.form.label.start') }}</label>
     <input type="time" id="start-time" name="time-tracker-start" v-model="beginTime" />
 
-    <label for="end-time">When did it finish?</label>
+    <label for="end-time">{{ t('main.form.label.end') }}</label>
     <input type="time" id="end-time" name="time-tracker-end" v-model="endTime" />
 
-    <label for="notes">You can tell me more about it:</label>
+    <label for="notes">{{ t('main.form.label.details') }}:</label>
     <textarea
       id="notes"
       name="notes-text"
       rows="10"
-      :placeholder="LangConstants.detailsPlaceHolder"
+      :placeholder="t('main.detailsPlaceHolder')"
       maxlength="1000"
       v-model="details"
     ></textarea>
@@ -188,5 +183,10 @@ menu {
   list-style-type: none; /* Remove bullets */
   padding: 0; /* Remove padding */
   margin: 0; /* Remove margins */
+}
+
+button > img {
+  width: 30px;
+  height: 30px;
 }
 </style>

@@ -1,0 +1,57 @@
+{
+  "header": {
+    "title": "Baby time tracking"
+  },
+  "main": {
+    "title": "Baby activity form",
+    "edit": {
+      "title": "Forgot something?"
+    },
+    "activity": {
+      "wasBreastFed": "Was breastfed",
+      "wasFed": "Was fed",
+      "playing": "Playing",
+      "crying": "Crying",
+      "tookANap": "Took a nap"
+    },
+    "form": {
+      "label": {
+        "activity": "What did your baby do?",
+        "date": "On which day?",
+        "start": "When did it start?",
+        "end": "When did it finish?",
+        "details": "Tell me more about it"
+      }
+    },
+    "activityPlaceHolder": "Select the activity",
+    "detailsPlaceHolder": "For instance, said a new word, spit a small amount of milk, laughing with daddy..."
+  },
+  "toolbar": {
+    "add": "Add",
+    "cancel": "Cancel",
+    "saveAll": "Save all",
+    "deleteAll": "Delete all",
+    "title": {
+      "add": "Add this record",
+      "cancel": "Cancel current record",
+      "saveAll": "Save all records",
+      "deleteAll": "Delete all records "
+    }
+  },
+  "aside": {
+    "title": "Activity log",
+    "entry": {
+      "activity": "Activity",
+      "entryDate": "Entry date",
+      "start": "Start",
+      "end": "End",
+      "details": "Details"
+    },
+    "edit": "Edit",
+    "delete": "Delete",
+    "buttonTitle": {
+      "edit": "Edit this record",
+      "delete": "Delete this record"
+    }
+  }
+}

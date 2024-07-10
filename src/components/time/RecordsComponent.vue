@@ -1,4 +1,6 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 defineProps(['timeRecords'])
 const emit = defineEmits(['editRecord', 'removeRecord'])
 
@@ -16,51 +18,51 @@ const onHandle = (action, key) => {
 </script>
 
 <template>
-  <h3>Activity log</h3>
+  <h3>t('aside.title')</h3>
   <ul tabindex="0" class="timekeeper-entry" v-for="(record, key) in timeRecords" :key="record.id">
     <li>
-      <label :for="record.babyActivity.entryId">Activity:</label
+      <label :for="record.babyActivity.entryId">{{ t('aside.entry.activity') }}:</label
       ><output :id="record.babyActivity.entryId">{{ record.babyActivity.entryValue }}</output>
     </li>
     <li>
-      <label :for="record.entryDate.entryId">Entry date:</label
+      <label :for="record.entryDate.entryId">{{ t('aside.entry.entryDate') }}:</label
       ><output :id="record.entryDate.entryId">
         {{ new Date(record.entryDate.entryValue).toLocaleDateString() }}
       </output>
     </li>
     <li>
-      <label :for="record.beginTime.entryId">Start:</label
+      <label :for="record.beginTime.entryId">{{ t('aside.entry.start') }}:</label
       ><output :id="record.beginTime.entryId">{{ record.beginTime.entryValue }}</output>
     </li>
     <li>
-      <label :for="record.endTime.entryId">End:</label
+      <label :for="record.endTime.entryId">{{ t('aside.entry.end') }}:</label
       ><output :id="record.endTime.entryId">{{ record.endTime.entryValue }}</output>
     </li>
     <li class="details-entry">
-      <label :for="record.details.entryId">Details:</label
+      <label :for="record.details.entryId">{{ t('aside.entry.details') }}:</label
       ><output :id="record.details.entryId">{{ record.details.entryValue }}</output>
     </li>
     <li>
-      <button role="button" title="Edit this record" @click="handleEdit(key)">
+      <button role="button" :title="t('aside.buttonTitle.edit')" @click="handleEdit(key)">
         <img
           aria-hidden="true"
           src="../../assets/icons/edit.svg"
-          alt="Edit"
+          alt="{{t('aside.edit')}}"
           width="30"
           height="30"
         />
-        <span hidden>Edit</span>
+        <span hidden>{{ t('aside.edit') }}</span>
       </button>
 
-      <button role="button" title="Delete this record" @click="handleRemove(key)">
+      <button role="button" :title="t('aside.buttonTitle.delete')" @click="handleRemove(key)">
         <img
           aria-hidden="true"
           src="../../assets/icons/delete.svg"
-          alt="Delete"
+          alt="{{t('aside.delete')}}"
           width="30"
           height="30"
         />
-        <span hidden>Delete</span>
+        <span hidden>{{ t('aside.delete') }}</span>
       </button>
     </li>
   </ul>

@@ -4,7 +4,7 @@ import TrackingComponent from './components/time/TrackingComponent.vue'
 
 <template>
   <header role="banner">
-    <h1>Baby time tracking</h1>
+    <h1>{{ $t('header.title') }}</h1>
   </header>
   <main role="main" class="container-fluid">
     <TrackingComponent></TrackingComponent>
