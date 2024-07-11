@@ -5,6 +5,8 @@ import { v4 as uuid } from 'uuid'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
+const defaultTitle = 'main.title'
+
 const activityTypes = [
   'main.activity.wasBreastFed',
   'main.activity.wasFed',
@@ -14,7 +16,7 @@ const activityTypes = [
 ]
 
 let formTitle = ref('')
-formTitle.value = t('main.title')
+formTitle.value = defaultTitle
 
 let entryDate = ref('')
 let beginTime = ref('')
@@ -49,7 +51,7 @@ function addRecord() {
   timeRecords.value[id] = currentRecord
   activeRecord = ''
 
-  formTitle.value = t('main.title')
+  formTitle.value = defaultTitle
 }
 
 function saveRecords() {
@@ -65,7 +67,7 @@ function cancel() {
 
   activeRecord = ''
 
-  formTitle.value = t('main.title')
+  formTitle.value = defaultTitle
 }
 
 function editRecord(key) {
@@ -78,13 +80,13 @@ function editRecord(key) {
     details.value = timeRecord.details.entryValue
   })(timeRecords.value[activeRecord])
 
-  formTitle.value = t('main.edit.title')
+  formTitle.value = 'main.edit.title'
 }
 
 function removeRecord(key) {
   delete timeRecords.value[key]
 
-  formTitle.value = t.main.title
+  formTitle.value = defaultTitle
 }
 </script>
 
@@ -129,7 +131,7 @@ function removeRecord(key) {
       </button>
     </li>
   </menu>
-  <h2>{{ formTitle }}</h2>
+  <h2>{{ t(formTitle) }}</h2>
   <form role="form">
     <label for="activities">{{ t('main.form.label.activity') }}</label>
     <select name="activities" id="activities" v-model="babyActivity">
