@@ -1,0 +1,60 @@
+{
+  "header": {
+    "title": "Baby-Zeiterfassung"
+  },
+  "nav": {
+    "title": "Menü"
+  },
+  "main": {
+    "title": "Baby-Aktivitätsformular",
+    "edit": {
+      "title": "Noch etwas vergessen?"
+    },
+    "activity": {
+      "wasBreastFed": "Gestillt",
+      "wasFed": "Gefüttert",
+      "playing": "Spielen",
+      "crying": "Weinen",
+      "tookANap": "Macht ein Schläfchen"
+    },
+    "form": {
+      "label": {
+        "activity": "Was machte dein Baby?",
+        "date": "An welchem Tag?",
+        "start": "Wann ging es los?",
+        "end": "Wann war es zu Ende?",
+        "details": "Erzähl mir mehr"
+      }
+    },
+    "activityPlaceHolder": "Wähle eine Aktivität",
+    "detailsPlaceHolder": "Zum Beispiel, es sagte ein neues Wort, spuckte etwas Milch, lachte mit Papi..."
+  },
+  "toolbar": {
+    "add": "Hinzufügen",
+    "cancel": "Abbrechen",
+    "saveAll": "Speichere alles",
+    "deleteAll": "Entferne alles",
+    "title": {
+      "add": "Füge Eintrag hinzu",
+      "cancel": "Eintragung abbrechen",
+      "saveAll": "Alle Einträge speichern",
+      "deleteAll": "Alle Einträge entfernen"
+    }
+  },
+  "aside": {
+    "title": "Aktivitäten-Tagebuch",
+    "entry": {
+      "activity": "Aktivität",
+      "entryDate": "Datum",
+      "start": "Beginn",
+      "end": "Ende",
+      "details": "Details"
+    },
+    "edit": "Bearbeiten",
+    "delete": "Entfernen",
+    "buttonTitle": {
+      "edit": "Bearbeite diesen Eintrag",
+      "delete": "Entferne diesen Eintrag"
+    }
+  }
+}
