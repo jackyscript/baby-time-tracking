@@ -5,12 +5,13 @@ import { createI18n } from 'vue-i18n'
 import App from './App.vue'
 
 import en from './locales/en.json'
+import de from './locales/de.json'
 // configure i18n
 const i18n = createI18n({
   locale: 'en',
   legacy: false,
   fallbackLocale: 'en',
-  messages: { en }
+  messages: { en, de }
 })
 const app = createApp(App)
 app.use(i18n)

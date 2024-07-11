@@ -6,11 +6,11 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
 const activityTypes = [
-  t('main.activity.wasBreastFed'),
-  t('main.activity.wasFed'),
-  t('main.activity.playing'),
-  t('main.activity.crying'),
-  t('main.activity.tookANap')
+  'main.activity.wasBreastFed',
+  'main.activity.wasFed',
+  'main.activity.playing',
+  'main.activity.crying',
+  'main.activity.tookANap'
 ]
 
 let formTitle = ref('')
@@ -135,11 +135,11 @@ function removeRecord(key) {
     <select name="activities" id="activities" v-model="babyActivity">
       <option value="" disabled selected>{{ t('main.activityPlaceHolder') }}</option>
       <option v-for="(activityType, index) in activityTypes" :key="index" :value="activityType">
-        {{ activityType }}
+        {{ t(activityType) }}
       </option>
     </select>
 
-    <label for="current-day">{{ t('main.form.label.date') }}:</label>
+    <label for="current-day">{{ t('main.form.label.date') }}</label>
     <input type="date" id="current-day" name="time-tracker-day" v-model="entryDate" />
 
     <label for="start-time">{{ t('main.form.label.start') }}</label>

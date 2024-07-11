@@ -2,6 +2,9 @@
   "header": {
     "title": "Baby time tracking"
   },
+  "nav": {
+    "title": "Menu"
+  },
   "main": {
     "title": "Baby activity form",
     "edit": {

@@ -18,7 +18,7 @@ const onHandle = (action, key) => {
 </script>
 
 <template>
-  <h3>t('aside.title')</h3>
+  <h3>{{ t('aside.title') }}</h3>
   <ul tabindex="0" class="timekeeper-entry" v-for="(record, key) in timeRecords" :key="record.id">
     <li>
       <label :for="record.babyActivity.entryId">{{ t('aside.entry.activity') }}:</label
