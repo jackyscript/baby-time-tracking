@@ -11,11 +11,11 @@
       "title": "Noch etwas vergessen?"
     },
     "activity": {
-      "wasBreastFed": "Gestillt",
-      "wasFed": "Gefüttert",
+      "wasBreastFed": "Wurde gestillt",
+      "wasFed": "Wurde gefüttert",
       "playing": "Spielen",
       "crying": "Weinen",
-      "tookANap": "Macht ein Schläfchen"
+      "tookANap": "Schläfchen machen"
     },
     "form": {
       "label": {
