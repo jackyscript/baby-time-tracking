@@ -12,8 +12,12 @@
     },
     "activity": {
       "wasBreastFed": "Wurde gestillt",
+      "wasBottleFed": "Wurde mit Flasche gestillt",
       "wasFed": "Wurde gefüttert",
+      "drankWater": "Wasser trinken",
+      "drankTea": "Tea trinken",
       "playing": "Spielen",
+      "bathing": "Baden",
       "crying": "Weinen",
       "tookANap": "Schläfchen machen"
     },

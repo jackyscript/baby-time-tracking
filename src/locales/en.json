@@ -12,8 +12,12 @@
     },
     "activity": {
       "wasBreastFed": "Was breastfed",
+      "wasBottleFed": "Was bottle-fed",
       "wasFed": "Was fed",
+      "drankWater": "Drank water",
+      "drankTea": "Drank tea",
       "playing": "Playing",
+      "bathing": "Bathing",
       "crying": "Crying",
       "tookANap": "Took a nap"
     },
