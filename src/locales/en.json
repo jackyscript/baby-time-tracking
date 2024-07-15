@@ -3,7 +3,11 @@
     "title": "Baby time tracking"
   },
   "nav": {
-    "title": "Menu"
+    "title": "Menu",
+    "toolbar": {
+      "brighten": "Brighten",
+      "darken": "Darken"
+    }
   },
   "main": {
     "title": "Baby activity form",

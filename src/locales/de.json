@@ -3,7 +3,11 @@
     "title": "Baby-Zeiterfassung"
   },
   "nav": {
-    "title": "Menü"
+    "title": "Menü",
+    "toolbar": {
+      "brighten": "Heller",
+      "darken": "Dunkler"
+    }
   },
   "main": {
     "title": "Baby-Aktivitätsformular",

@@ -95,6 +95,7 @@ function removeRecord(key) {
 </script>
 
 <template>
+  <h2>{{ t(formTitle) }}</h2>
   <menu role="toolbar" class="flex-container">
     <li>
       <button class="flex-item" role="button" :title="t('toolbar.title.add')" @click="addRecord">
@@ -135,7 +136,6 @@ function removeRecord(key) {
       </button>
     </li>
   </menu>
-  <h2>{{ t(formTitle) }}</h2>
   <form role="form">
     <label for="activities">{{ t('main.form.label.activity') }}</label>
     <select name="activities" id="activities" v-model="babyActivity">

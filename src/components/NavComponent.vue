@@ -5,6 +5,13 @@ const supportedLocales = {
   en: { name: 'English' },
   de: { name: 'Deutsch' }
 }
+
+function darken() {
+  document.documentElement.setAttribute('data-theme', 'dark')
+}
+function brighten() {
+  document.documentElement.setAttribute('data-theme', 'light')
+}
 </script>
 <template>
   <nav>
@@ -14,6 +21,22 @@ const supportedLocales = {
       </li>
     </ul>
     <ul>
+      <li>
+        <button role="button" :title="t('nav.toolbar.darken')" @click="darken">
+          <img aria-hidden="true" src="../assets/icons/darken.svg" :alt="t('nav.toolbar.darken')" />
+          <span hidden>{{ t('nav.toolbar.darken') }}</span>
+        </button>
+      </li>
+      <li>
+        <button role="button" :title="t('nav.toolbar.brighten')" @click="brighten">
+          <img
+            aria-hidden="true"
+            src="../assets/icons/brighten.svg"
+            :alt="t('nav.toolbar.brighten')"
+          />
+          <span hidden>{{ t('nav.toolbar.brighten') }}</span>
+        </button>
+      </li>
       <li>
         <select name="locales" id="locales" v-model="locale">
           <option
@@ -29,3 +52,15 @@ const supportedLocales = {
     </ul>
   </nav>
 </template>
+
+<style scoped>
+button > img {
+  width: 20px;
+  height: 20px;
+}
+
+nav {
+  padding-left: var(--pico-spacing);
+  padding-right: var(--pico-spacing);
+}
+</style>
