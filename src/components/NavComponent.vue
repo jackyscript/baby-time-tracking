@@ -12,6 +12,9 @@ function darken() {
 function brighten() {
   document.documentElement.setAttribute('data-theme', 'light')
 }
+function changeLocale(locale) {
+  document.documentElement.setAttribute('lang', locale)
+}
 </script>
 <template>
   <nav>
@@ -38,7 +41,7 @@ function brighten() {
         </button>
       </li>
       <li>
-        <select name="locales" id="locales" v-model="locale">
+        <select name="locales" id="locales" v-model="locale" @change="changeLocale(locale)">
           <option
             v-for="(availableLocale, index) in availableLocales"
             :key="index"
