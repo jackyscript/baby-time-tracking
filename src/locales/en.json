@@ -1,6 +1,7 @@
 {
   "header": {
-    "title": "Baby time tracking"
+    "title": "Baby time tracking",
+    "main": "Skip to main content"
   },
   "nav": {
     "title": "Menu",
@@ -64,5 +65,8 @@
       "edit": "Edit this record",
       "delete": "Delete this record"
     }
+  },
+  "footer": {
+    "top": "Go to top"
   }
 }

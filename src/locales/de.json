@@ -1,6 +1,7 @@
 {
   "header": {
-    "title": "Baby-Zeiterfassung"
+    "title": "Baby-Zeiterfassung",
+    "main": "Gehe direkt zur Hauptseite"
   },
   "nav": {
     "title": "Menü",
@@ -64,5 +65,8 @@
       "edit": "Bearbeite diesen Eintrag",
       "delete": "Entferne diesen Eintrag"
     }
+  },
+  "footer": {
+    "top": "Gehe zu Seitenanfang"
   }
 }
