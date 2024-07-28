@@ -6,12 +6,16 @@ const supportedLocales = {
   de: { name: 'Deutsch' }
 }
 
+const colorThemeAttribute = 'data-theme'
+
 function darken() {
-  document.documentElement.setAttribute('data-theme', 'dark')
+  document.documentElement.setAttribute(colorThemeAttribute, 'dark')
 }
+
 function brighten() {
-  document.documentElement.setAttribute('data-theme', 'light')
+  document.documentElement.setAttribute(colorThemeAttribute, 'light')
 }
+
 function changeLocale(locale) {
   document.documentElement.setAttribute('lang', locale)
 }
