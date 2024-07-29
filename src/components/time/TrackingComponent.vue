@@ -27,6 +27,9 @@ let beginTime = ref('')
 let endTime = ref('')
 let babyActivity = ref('')
 let details = ref('')
+let deleteConfirmationText = ref('')
+
+let deleteAllRecordsConfirmation = ref(false)
 
 let activeRecord = ''
 
@@ -62,8 +65,19 @@ function saveRecords() {
   localStorage.setItem(saveToLocalStorageKey, JSON.stringify(timeRecords.value))
 }
 
-function deleteRecords() {
-  localStorage.removeItem(saveToLocalStorageKey)
+function showDeleteRecordsConfirmation() {
+  deleteAllRecordsConfirmation.value = true
+}
+
+function resetDeleteAll() {
+  deleteConfirmationText.value = ''
+  deleteAllRecordsConfirmation.value = false
+}
+function confirmDeleteAll() {
+  if (t('delete.records.confirm') === deleteConfirmationText.value) {
+    localStorage.removeItem(saveToLocalStorageKey)
+    resetDeleteAll()
+  }
 }
 
 function cancel() {
@@ -125,7 +139,7 @@ function removeRecord(key) {
         class="flex-item"
         role="button"
         :title="t('toolbar.title.deleteAll')"
-        @click="deleteRecords"
+        @click="showDeleteRecordsConfirmation"
       >
         <img
           aria-hidden="true"
@@ -136,6 +150,23 @@ function removeRecord(key) {
       </button>
     </li>
   </menu>
+  <section v-if="deleteAllRecordsConfirmation">
+    <label for="deleteAllRecordsConfirmation">{{ t('delete.records.confirmation') }}</label>
+    <input
+      type="text"
+      name="deleteAllRecordsConfirmation"
+      id="deleteAllRecordsConfirmation"
+      v-model="deleteConfirmationText"
+    />
+    <div class="grid">
+      <button class="secondary" role="button" @click="resetDeleteAll">
+        {{ t('delete.records.cancel') }}
+      </button>
+      <button role="button" @click="confirmDeleteAll">
+        {{ t('delete.records.confirm') }}
+      </button>
+    </div>
+  </section>
   <form role="form">
     <label for="activities">{{ t('main.form.label.activity') }}</label>
     <select name="activities" id="activities" v-model="babyActivity">
