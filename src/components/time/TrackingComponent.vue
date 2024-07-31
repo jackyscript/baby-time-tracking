@@ -78,7 +78,7 @@ function resetDeleteAll() {
   deleteAllRecordsConfirmation.value = false
 }
 function confirmDeleteAll() {
-  if (t('delete.records.confirm') === deleteConfirmationText.value) {
+  if (t('delete.records.confirm').toLowerCase() === deleteConfirmationText.value.toLowerCase()) {
     localStorage.removeItem(saveToLocalStorageKey)
     toolbarActionInfo.value = t('records.deleted')
     resetDeleteAll()
@@ -176,7 +176,7 @@ function removeRecord(key) {
     />
   </menu>
   <section v-if="deleteAllRecordsConfirmation">
-    <form role="form">
+    <form role="form" @submit.prevent="confirmDeleteAll">
       <label for="deleteAllRecordsConfirmation">{{ t('delete.records.confirmation') }}</label>
       <input
         type="text"
