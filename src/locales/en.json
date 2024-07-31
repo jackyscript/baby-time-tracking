@@ -75,5 +75,13 @@
       "cancel": "Cancel",
       "confirm": "Confirm"
     }
+  },
+  "record": {
+    "added": "Baby activity entry added",
+    "canceled": "The current entry was canceled and has been reset"
+  },
+  "records": {
+    "saved": "The baby activity entries have been saved",
+    "deleted": "All activity entries have been deleted"
   }
 }

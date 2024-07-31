@@ -75,5 +75,13 @@
       "cancel": "Abbrechen",
       "confirm": "Bestätigen"
     }
+  },
+  "record": {
+    "added": "Die Baby-Aktivität wurde eingetragen",
+    "canceled": "Die ajtuelle Eintragung wurde abgebrochen und das Formular wurde zurückgesetzt"
+  },
+  "records": {
+    "saved": "Die Baby-Aktivitätseinträge wurden gespeichert",
+    "deleted": "Alle Aktivitätseinträge wurden entfernt"
   }
 }

@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import RecordsComponent from './RecordsComponent.vue'
+import AlertComponent from '../AlertComponent.vue'
 import { v4 as uuid } from 'uuid'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
@@ -32,6 +33,7 @@ let deleteConfirmationText = ref('')
 let deleteAllRecordsConfirmation = ref(false)
 
 let activeRecord = ''
+let toolbarActionInfo = ref('')
 
 const currentDate = new Date()
 const currentDay = currentDate.toISOString().substring(0, 10)
@@ -59,10 +61,12 @@ function addRecord() {
   activeRecord = ''
 
   formTitle.value = defaultTitle
+  toolbarActionInfo.value = t('record.added')
 }
 
 function saveRecords() {
   localStorage.setItem(saveToLocalStorageKey, JSON.stringify(timeRecords.value))
+  toolbarActionInfo.value = t('records.saved')
 }
 
 function showDeleteRecordsConfirmation() {
@@ -76,6 +80,7 @@ function resetDeleteAll() {
 function confirmDeleteAll() {
   if (t('delete.records.confirm') === deleteConfirmationText.value) {
     localStorage.removeItem(saveToLocalStorageKey)
+    toolbarActionInfo.value = t('records.deleted')
     resetDeleteAll()
   }
 }
@@ -86,6 +91,7 @@ function cancel() {
   activeRecord = ''
 
   formTitle.value = defaultTitle
+  toolbarActionInfo.value = t('record.canceled')
 }
 
 function editRecord(key) {
@@ -163,6 +169,11 @@ function removeRecord(key) {
         <span hidden>{{ t('toolbar.deleteAll') }}</span>
       </button>
     </li>
+    <AlertComponent
+      alert-id="toolbarInfo"
+      action-info-id="toolbarActionInfo"
+      :alert-text="toolbarActionInfo"
+    />
   </menu>
   <section v-if="deleteAllRecordsConfirmation">
     <form role="form">
