@@ -13,8 +13,6 @@ import TrackingComponent from './components/time/TrackingComponent.vue'
     <TrackingComponent></TrackingComponent>
   </main>
   <footer>
-    <footer>
-      <a href="#top">{{ $t('footer.top') }}</a>
-    </footer>
+    <a href="#top">{{ $t('footer.top') }}</a>
   </footer>
 </template>
