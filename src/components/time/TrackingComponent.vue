@@ -165,7 +165,7 @@ function removeRecord(key) {
     </li>
   </menu>
   <section v-if="deleteAllRecordsConfirmation">
-    <form>
+    <form role="form">
       <label for="deleteAllRecordsConfirmation">{{ t('delete.records.confirmation') }}</label>
       <input
         type="text"
@@ -212,7 +212,7 @@ function removeRecord(key) {
     ></textarea>
   </form>
 
-  <aside>
+  <aside role="complementary">
     <RecordsComponent
       :timeRecords="timeRecords"
       @edit-record="editRecord"
