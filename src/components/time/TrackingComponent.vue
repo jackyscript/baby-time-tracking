@@ -48,21 +48,25 @@ const saveToLocalStorageKey = 'savedRecords'
 const timeRecords = ref(JSON.parse(localStorage.getItem(saveToLocalStorageKey) ?? '{}'))
 
 function addRecord() {
-  let id = activeRecord === '' ? uuid() : activeRecord
+  if (babyActivity.value === '') {
+    toolbarActionInfo.value = t('main.activity.unselected')
+  } else {
+    let id = activeRecord === '' ? uuid() : activeRecord
 
-  let currentRecord = {
-    entryDate: { entryId: uuid(), entryValue: entryDate.value },
-    beginTime: { entryId: uuid(), entryValue: beginTime.value },
-    endTime: { entryId: uuid(), entryValue: endTime.value },
-    babyActivity: { entryId: uuid(), entryValue: babyActivity.value },
-    details: { entryId: uuid(), entryValue: details.value }
+    let currentRecord = {
+      entryDate: { entryId: uuid(), entryValue: entryDate.value },
+      beginTime: { entryId: uuid(), entryValue: beginTime.value },
+      endTime: { entryId: uuid(), entryValue: endTime.value },
+      babyActivity: { entryId: uuid(), entryValue: babyActivity.value },
+      details: { entryId: uuid(), entryValue: details.value }
+    }
+
+    timeRecords.value[id] = currentRecord
+    activeRecord = ''
+
+    formTitle.value = defaultTitle
+    toolbarActionInfo.value = t('record.added')
   }
-
-  timeRecords.value[id] = currentRecord
-  activeRecord = ''
-
-  formTitle.value = defaultTitle
-  toolbarActionInfo.value = t('record.added')
 }
 
 function saveRecords() {
