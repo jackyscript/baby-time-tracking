@@ -22,7 +22,7 @@ const onHandle = (action, key) => {
   <ul tabindex="0" class="timekeeper-entry" v-for="(record, key) in timeRecords" :key="record.id">
     <li>
       <label :for="record.babyActivity.entryId">{{ t('aside.entry.activity') }}:</label
-      ><output :id="record.babyActivity.entryId">{{ record.babyActivity.entryValue }}</output>
+      ><output :id="record.babyActivity.entryId">{{ t(record.babyActivity.entryValue) }}</output>
     </li>
     <li>
       <label :for="record.entryDate.entryId">{{ t('aside.entry.entryDate') }}:</label
