@@ -123,37 +123,19 @@ function removeRecord(key) {
   <h2>{{ t(formTitle) }}</h2>
   <menu role="toolbar" class="flex-container">
     <li>
-      <button
-        type="button"
-        class="flex-item"
-        role="button"
-        :title="t('toolbar.title.add')"
-        @click="addRecord"
-      >
+      <button type="button" role="button" :title="t('toolbar.title.add')" @click="addRecord">
         <img aria-hidden="true" src="../../assets/icons/add.svg" :alt="t('toolbar.add')" />
         <span hidden>{{ t('toolbar.add') }}</span>
       </button>
     </li>
     <li>
-      <button
-        type="button"
-        class="flex-item"
-        role="button"
-        :title="t('toolbar.title.cancel')"
-        @click="cancel"
-      >
+      <button type="button" role="button" :title="t('toolbar.title.cancel')" @click="cancel">
         <img aria-hidden="true" src="../../assets/icons/cancel.svg" :alt="t('toolbar.cancel')" />
         <span hidden>{{ t('toolbar.cancel') }}</span>
       </button>
     </li>
     <li>
-      <button
-        type="button"
-        class="flex-item"
-        role="button"
-        :title="t('toolbar.title.saveAll')"
-        @click="saveRecords"
-      >
+      <button type="button" role="button" :title="t('toolbar.title.saveAll')" @click="saveRecords">
         <img aria-hidden="true" src="../../assets/icons/save.svg" :alt="t('toolbar.saveAll')" />
         <span hidden>{{ t('toolbar.saveAll') }}</span>
       </button>
@@ -161,7 +143,6 @@ function removeRecord(key) {
     <li>
       <button
         type="button"
-        class="flex-item"
         role="button"
         :title="t('toolbar.title.deleteAll')"
         @click="showDeleteRecordsConfirmation"
