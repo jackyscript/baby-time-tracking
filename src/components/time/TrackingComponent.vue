@@ -4,6 +4,7 @@ import RecordsComponent from './RecordsComponent.vue'
 import AlertComponent from '../AlertComponent.vue'
 import { v4 as uuid } from 'uuid'
 import { useI18n } from 'vue-i18n'
+import { MagicString } from 'vue/compiler-sfc'
 const { t } = useI18n()
 
 const defaultTitle = 'main.title'
@@ -196,12 +197,20 @@ function removeRecord(key) {
   </section>
   <form role="form">
     <label for="activities">{{ t('main.form.label.activity') }}</label>
-    <select name="activities" id="activities" v-model="babyActivity">
+    <select
+      name="activities"
+      id="activities"
+      v-model="babyActivity"
+      :aria-invalid="babyActivity === ''"
+      aria-describedby="invalid-helper"
+    >
       <option value="" disabled selected>{{ t('main.activityPlaceHolder') }}</option>
       <option v-for="(activityType, index) in activityTypes" :key="index" :value="activityType">
         {{ t(activityType) }}
-      </option>
-    </select>
+      </option></select
+    ><small id="invalid-helper" v-if="babyActivity === ''">
+      {{ t('main.activity.unselected') }}
+    </small>
 
     <label for="current-day">{{ t('main.form.label.date') }}</label>
     <input type="date" id="current-day" name="time-tracker-day" v-model="entryDate" />

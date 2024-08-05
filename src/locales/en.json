@@ -24,7 +24,8 @@
       "playing": "Playing",
       "bathing": "Bathing",
       "crying": "Crying",
-      "tookANap": "Took a nap"
+      "tookANap": "Took a nap",
+      "unselected": "Please select an activity"
     },
     "form": {
       "label": {

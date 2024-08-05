@@ -24,7 +24,8 @@
       "playing": "Spielen",
       "bathing": "Baden",
       "crying": "Weinen",
-      "tookANap": "Schläfchen machen"
+      "tookANap": "Schläfchen machen",
+      "unselected": "Bitte Aktivität wählen"
     },
     "form": {
       "label": {
