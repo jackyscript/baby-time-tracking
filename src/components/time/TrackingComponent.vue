@@ -4,7 +4,6 @@ import RecordsComponent from './RecordsComponent.vue'
 import AlertComponent from '../AlertComponent.vue'
 import { v4 as uuid } from 'uuid'
 import { useI18n } from 'vue-i18n'
-import { MagicString } from 'vue/compiler-sfc'
 const { t } = useI18n()
 
 const defaultTitle = 'main.title'
