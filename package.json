@@ -12,6 +12,7 @@
     "svg-minify": "svgo -f src/assets/icons -o src/assets/icons/minify"
   },
   "dependencies": {
+    "@kyvg/vue3-notification": "^3.2.1",
     "uuid": "^10.0.0",
     "vue": "^3.4.29",
     "vue-i18n": "^9.13.1"

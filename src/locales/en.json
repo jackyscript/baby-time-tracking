@@ -84,5 +84,11 @@
   "records": {
     "saved": "The baby activity entries have been saved",
     "deleted": "All activity entries have been deleted"
+  },
+  "notify": {
+    "canceled": "Canceled",
+    "deleteAll": "Entries deleted",
+    "saveRecords": "Entries saved",
+    "addRecord": "Entry added"
   }
 }

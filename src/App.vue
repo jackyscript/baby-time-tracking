@@ -15,4 +15,5 @@ import TrackingComponent from './components/time/TrackingComponent.vue'
   <footer>
     <a href="#top">{{ $t('footer.top') }}</a>
   </footer>
+  <notifications ignoreDuplicates="true" />
 </template>

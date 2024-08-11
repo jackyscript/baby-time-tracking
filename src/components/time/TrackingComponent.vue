@@ -4,6 +4,7 @@ import RecordsComponent from './RecordsComponent.vue'
 import AlertComponent from '../AlertComponent.vue'
 import { v4 as uuid } from 'uuid'
 import { useI18n } from 'vue-i18n'
+import { createNotification } from '../../utils/notification.js'
 const { t } = useI18n()
 
 const defaultTitle = 'main.title'
@@ -65,12 +66,15 @@ function addRecord() {
 
     formTitle.value = defaultTitle
     toolbarActionInfo.value = t('record.added')
+    createNotification(t('notify.addRecord'), t('record.added'))
   }
 }
 
 function saveRecords() {
   localStorage.setItem(saveToLocalStorageKey, JSON.stringify(timeRecords.value))
   toolbarActionInfo.value = t('records.saved')
+
+  createNotification(t('notify.saveRecords'), t('records.saved'))
 }
 
 function showDeleteRecordsConfirmation() {
@@ -85,6 +89,8 @@ function confirmDeleteAll() {
   if (t('delete.records.confirm').toLowerCase() === deleteConfirmationText.value.toLowerCase()) {
     localStorage.removeItem(saveToLocalStorageKey)
     toolbarActionInfo.value = t('records.deleted')
+
+    createNotification(t('notify.deleteAll'), t('records.deleted'))
     resetDeleteAll()
   }
 }
@@ -96,6 +102,8 @@ function cancel() {
 
   formTitle.value = defaultTitle
   toolbarActionInfo.value = t('record.canceled')
+
+  createNotification(t('notify.canceled'), t('record.canceled'))
 }
 
 function editRecord(key) {
