@@ -30,8 +30,10 @@ let endTime = ref('')
 let babyActivity = ref('')
 let details = ref('')
 let deleteConfirmationText = ref('')
+let saveConfirmationText = ref('')
 
 let deleteAllRecordsConfirmation = ref(false)
+let saveRecordsConfirmation = ref(false)
 
 let activeRecord = ''
 let toolbarActionInfo = ref('')
@@ -70,6 +72,29 @@ function addRecord() {
   }
 }
 
+function showSaveRecordsConfirmation() {
+  const localStorageDataExists = JSON.parse(localStorage.getItem(saveToLocalStorageKey))
+  if (!localStorageDataExists) {
+    saveRecordsConfirmation.value = true
+  } else {
+    saveRecords()
+  }
+}
+
+function showDeleteRecordsConfirmation() {
+  deleteAllRecordsConfirmation.value = true
+}
+
+function resetConfirmSaveRecords() {
+  saveConfirmationText.value = ''
+  saveRecordsConfirmation.value = false
+}
+
+function resetDeleteAll() {
+  deleteConfirmationText.value = ''
+  deleteAllRecordsConfirmation.value = false
+}
+
 function saveRecords() {
   localStorage.setItem(saveToLocalStorageKey, JSON.stringify(timeRecords.value))
   toolbarActionInfo.value = t('records.saved')
@@ -77,14 +102,10 @@ function saveRecords() {
   createNotification(t('notify.saveRecords'), t('records.saved'))
 }
 
-function showDeleteRecordsConfirmation() {
-  deleteAllRecordsConfirmation.value = true
+function confirmSaveRecords() {
+  saveRecords()
 }
 
-function resetDeleteAll() {
-  deleteConfirmationText.value = ''
-  deleteAllRecordsConfirmation.value = false
-}
 function confirmDeleteAll() {
   if (t('delete.records.confirm').toLowerCase() === deleteConfirmationText.value.toLowerCase()) {
     localStorage.removeItem(saveToLocalStorageKey)
@@ -142,7 +163,12 @@ function removeRecord(key) {
       </button>
     </li>
     <li>
-      <button type="button" role="button" :title="t('toolbar.title.saveAll')" @click="saveRecords">
+      <button
+        type="button"
+        role="button"
+        :title="t('toolbar.title.saveAll')"
+        @click="showSaveRecordsConfirmation"
+      >
         <img aria-hidden="true" src="../../assets/icons/save.svg" :alt="t('toolbar.saveAll')" />
         <span hidden>{{ t('toolbar.saveAll') }}</span>
       </button>
@@ -168,6 +194,19 @@ function removeRecord(key) {
       :alert-text="toolbarActionInfo"
     />
   </menu>
+  <section v-if="saveRecordsConfirmation">
+    <form role="form" @submit.prevent="confirmSaveRecords">
+      <p>{{ t('save.records.confirmation') }}</p>
+      <div class="grid">
+        <button type="button" class="contrast" role="button" @click="confirmSaveRecords">
+          {{ t('save.records.confirm') }}
+        </button>
+        <button type="button" class="secondary" role="button" @click="resetConfirmSaveRecords">
+          {{ t('save.records.cancel') }}
+        </button>
+      </div>
+    </form>
+  </section>
   <section v-if="deleteAllRecordsConfirmation">
     <form role="form" @submit.prevent="confirmDeleteAll">
       <label for="deleteAllRecordsConfirmation">{{ t('delete.records.confirmation') }}</label>
@@ -178,11 +217,11 @@ function removeRecord(key) {
         v-model="deleteConfirmationText"
       />
       <div class="grid">
-        <button type="button" class="secondary" role="button" @click="resetDeleteAll">
-          {{ t('delete.records.cancel') }}
-        </button>
         <button type="button" class="contrast" role="button" @click="confirmDeleteAll">
           {{ t('delete.records.confirm') }}
+        </button>
+        <button type="button" class="secondary" role="button" @click="resetDeleteAll">
+          {{ t('delete.records.cancel') }}
         </button>
       </div>
     </form>

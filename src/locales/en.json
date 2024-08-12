@@ -72,23 +72,30 @@
   },
   "delete": {
     "records": {
-      "confirmation": "Do you really want to remove all entries? Type in 'Confirm' and hit the confirm button",
+      "confirmation": "Do you really want to remove all entries? Type in 'Confirm' and hit the confirm button.",
       "cancel": "Cancel",
       "confirm": "Confirm"
     }
   },
   "record": {
     "added": "Baby activity entry added",
-    "canceled": "The current entry was canceled and has been reset"
+    "canceled": "The current entry was canceled and has been reset."
   },
   "records": {
-    "saved": "The baby activity entries have been saved",
-    "deleted": "All activity entries have been deleted"
+    "saved": "The baby activity entries have been saved.",
+    "deleted": "All activity entries have been deleted."
   },
   "notify": {
     "canceled": "Canceled",
     "deleteAll": "Entries deleted",
     "saveRecords": "Entries saved",
     "addRecord": "Entry added"
+  },
+  "save": {
+    "records": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "confirmation": "Do you like to save the current entries? Data will be saved locally in your browser (similar to a cookie), no data will be sent to a server. However there is no guarantee, other pages you are visiting are reading the locally stored data. You can remove the data by using the \"remove records\" button or by emptying your browser cache. You can use the application without this saving functionality, but you will lose all entries after closing this webpage."
+    }
   }
 }

@@ -72,7 +72,7 @@
   },
   "delete": {
     "records": {
-      "confirmation": "Wollen Sie wirklich alle Einträge entfernen? Geben Sie dazu 'Bestätigen' ein und drücken Sie anschließend auf 'Bestätigen'",
+      "confirmation": "Wollen Sie wirklich alle Einträge entfernen? Geben Sie dazu 'Bestätigen' ein und drücken Sie anschließend auf 'Bestätigen'.",
       "cancel": "Abbrechen",
       "confirm": "Bestätigen"
     }
@@ -90,5 +90,12 @@
     "deleteAll": "Einträge entfernt",
     "saveRecords": "Einträge gespeichert",
     "addRecord": "Eintrag ergänzt"
+  },
+  "save": {
+    "records": {
+      "confirmation": "Möchten Sie die vorgenommenen Einträge speichern? Die Speicherung erfolgt lokal in Ihrem Browser (ähnlich zu einem Cookie), die Daten werden an keinen Server gesendet. Jedoch kann nicht ausgeschlossen werden, dass andere Webseiten diese Daten in Ihrem Browser auslesen. Sie können durch die \"Entfernen\"-Funktion oder durch Löschen des Browser-Caches die Daten jederzeit wieder löschen. Sie können die Anwendung auch ohne diese Funktion weiter nutzen, jedoch verlieren Sie nach Verlassen dieser Seite sämtliche vorgenommenen Einträge.",
+      "confirm": "Bestätigen",
+      "cancel": "Abbrechen"
+    }
   }
 }
