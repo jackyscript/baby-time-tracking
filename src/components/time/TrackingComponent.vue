@@ -102,6 +102,7 @@ function saveRecords() {
   toolbarActionInfo.value = t('records.saved')
 
   createNotification(t('notify.saveRecords'), t('records.saved'))
+  resetConfirmSaveRecords()
 }
 
 function confirmSaveRecords() {
