@@ -75,6 +75,7 @@ function addRecord() {
 }
 
 function showSaveRecordsConfirmation() {
+  resetDeleteAll()
   const localStorageDataExists = JSON.parse(localStorage.getItem(saveToLocalStorageKey))
   if (!localStorageDataExists) {
     saveRecordsConfirmation.value = true
@@ -84,6 +85,7 @@ function showSaveRecordsConfirmation() {
 }
 
 function showDeleteRecordsConfirmation() {
+  resetConfirmSaveRecords()
   deleteAllRecordsConfirmation.value = true
 }
 
