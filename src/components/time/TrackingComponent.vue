@@ -54,6 +54,7 @@ const timeRecords = ref(JSON.parse(localStorage.getItem(saveToLocalStorageKey) ?
 function addRecord() {
   if (babyActivity.value === '') {
     toolbarActionInfo.value = t('main.activity.unselected')
+    createNotification(t('notify.entry.mandatory'), t('main.activity.unselected'))
   } else {
     let id = activeRecord === '' ? uuid() : activeRecord
 

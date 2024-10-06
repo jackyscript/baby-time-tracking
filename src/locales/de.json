@@ -89,7 +89,10 @@
     "canceled": "Abbruch",
     "deleteAll": "Einträge entfernt",
     "saveRecords": "Einträge gespeichert",
-    "addRecord": "Eintrag ergänzt"
+    "addRecord": "Eintrag ergänzt",
+    "entry": {
+      "mandatory": "Eintragung erforderlich"
+    }
   },
   "save": {
     "records": {

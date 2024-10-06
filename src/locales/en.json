@@ -89,7 +89,10 @@
     "canceled": "Canceled",
     "deleteAll": "Entries deleted",
     "saveRecords": "Entries saved",
-    "addRecord": "Entry added"
+    "addRecord": "Entry added",
+    "entry": {
+      "mandatory": "Entry mandatory"
+    }
   },
   "save": {
     "records": {
