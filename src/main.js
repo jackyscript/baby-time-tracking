@@ -7,9 +7,13 @@ import App from './App.vue'
 
 import en from './locales/en.json'
 import de from './locales/de.json'
+// client language
+const clientLocale =
+  navigator.languages && navigator.languages.length > 0 ? navigator.languages[0] : 'en'
+
 // configure i18n
 const i18n = createI18n({
-  locale: 'en',
+  locale: clientLocale,
   legacy: false,
   fallbackLocale: 'en',
   messages: { en, de }
