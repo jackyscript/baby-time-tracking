@@ -7,6 +7,8 @@ import AlertComponent from '../AlertComponent.vue'
 import { v4 as uuid } from 'uuid'
 import { useI18n } from 'vue-i18n'
 import { createNotification } from '../../utils/notification.js'
+import { resetConfirmationForm } from '../../utils/confirmation.js'
+
 const { t } = useI18n()
 
 const defaultTitle = 'main.title'
@@ -91,13 +93,11 @@ function showDeleteRecordsConfirmation() {
 }
 
 function resetConfirmSaveRecords() {
-  saveConfirmationText.value = ''
-  saveRecordsConfirmation.value = false
+  resetConfirmationForm(saveConfirmationText, saveRecordsConfirmation)
 }
 
 function resetDeleteAll() {
-  deleteConfirmationText.value = ''
-  deleteAllRecordsConfirmation.value = false
+  resetConfirmationForm(deleteConfirmationText, deleteAllRecordsConfirmation)
 }
 
 function saveRecords() {
