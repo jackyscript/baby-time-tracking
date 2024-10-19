@@ -22,7 +22,9 @@ const activityTypes = [
   'main.activity.bathing',
   'main.activity.playing',
   'main.activity.crying',
-  'main.activity.sleeping'
+  'main.activity.sleeping',
+  'main.activity.pee',
+  'main.activity.poo'
 ]
 
 let formTitle = ref('')

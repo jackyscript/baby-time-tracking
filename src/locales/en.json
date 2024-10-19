@@ -25,6 +25,8 @@
       "bathing": "Bathing",
       "crying": "Crying",
       "sleeping": "Sleeping",
+      "pee": "Pee",
+      "poo": "Poo",
       "unselected": "Please select an activity"
     },
     "form": {
