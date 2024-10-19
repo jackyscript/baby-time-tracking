@@ -21,25 +21,25 @@ const onHandle = (action, key) => {
   <h3>{{ t('aside.title') }}</h3>
   <ul tabindex="0" class="timekeeper-entry" v-for="(record, key) in timeRecords" :key="record.id">
     <li>
-      <label :for="record.babyActivity.entryId">{{ t('aside.entry.activity') }}:</label
+      <label :for="record.babyActivity.entryId">{{ t('aside.entry.activity') }}</label
       ><output :id="record.babyActivity.entryId">{{ t(record.babyActivity.entryValue) }}</output>
     </li>
     <li>
-      <label :for="record.entryDate.entryId">{{ t('aside.entry.entryDate') }}:</label
+      <label :for="record.entryDate.entryId">{{ t('aside.entry.entryDate') }}</label
       ><output :id="record.entryDate.entryId">
         {{ new Date(record.entryDate.entryValue).toLocaleDateString() }}
       </output>
     </li>
     <li>
-      <label :for="record.beginTime.entryId">{{ t('aside.entry.start') }}:</label
+      <label :for="record.beginTime.entryId">{{ t('aside.entry.start') }}</label
       ><output :id="record.beginTime.entryId">{{ record.beginTime.entryValue }}</output>
     </li>
     <li>
-      <label :for="record.endTime.entryId">{{ t('aside.entry.end') }}:</label
+      <label :for="record.endTime.entryId">{{ t('aside.entry.end') }}</label
       ><output :id="record.endTime.entryId">{{ record.endTime.entryValue }}</output>
     </li>
     <li class="details-entry">
-      <label :for="record.details.entryId">{{ t('aside.entry.details') }}:</label
+      <label :for="record.details.entryId">{{ t('aside.entry.details') }}</label
       ><output :id="record.details.entryId">{{ record.details.entryValue }}</output>
     </li>
     <li>
@@ -81,5 +81,14 @@ ul.timekeeper-entry {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 200px;
+}
+
+@media (min-width: 768px) {
+  ul.timekeeper-entry {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
 }
 </style>
