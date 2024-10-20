@@ -3,13 +3,14 @@ import { useI18n } from 'vue-i18n'
 import { computed, ref } from 'vue'
 const { t } = useI18n()
 const props = defineProps(['timeRecords'])
+const timeRecords = props.timeRecords
 const emit = defineEmits(['editRecord', 'removeRecord'])
 
 const entriesFilter = ref('all')
 
 const filterRecords = function (filterCriterion) {
   const entries = {}
-  Object.entries(props.timeRecords)
+  Object.entries(timeRecords)
     .filter((record) => {
       const attributes = record[1]
       const entryDate = new Date(attributes.entryDate.entryValue)
@@ -44,7 +45,7 @@ const resultEntries = computed(() => {
   } else if (entriesFilter.value === 'month') {
     return monthsRecords.value
   }
-  return props.timeRecords
+  return timeRecords
 })
 
 const handleEdit = (key) => {
