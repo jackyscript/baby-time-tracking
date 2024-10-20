@@ -1,8 +1,51 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { computed, ref } from 'vue'
 const { t } = useI18n()
-defineProps(['timeRecords'])
+const props = defineProps(['timeRecords'])
 const emit = defineEmits(['editRecord', 'removeRecord'])
+
+const entriesFilter = ref('all')
+
+const filterRecords = function (filterCriterion) {
+  const entries = {}
+  Object.entries(props.timeRecords)
+    .filter((record) => {
+      const attributes = record[1]
+      const entryDate = new Date(attributes.entryDate.entryValue)
+      const today = new Date()
+      return filterCriterion(entryDate, today)
+    })
+    .forEach((filteredEntry) => {
+      const id = filteredEntry[0]
+      const attributes = filteredEntry[1]
+      entries[id] = attributes
+    })
+  return entries
+}
+
+const todaysRecords = computed(() => {
+  return filterRecords(
+    (entryDate, todayDate) => entryDate.setHours(0, 0, 0, 0) === todayDate.setHours(0, 0, 0, 0)
+  )
+})
+
+const monthsRecords = computed(() => {
+  return filterRecords(
+    (entryDate, todayDate) =>
+      entryDate.getMonth() === todayDate.getMonth() &&
+      entryDate.getFullYear() === todayDate.getFullYear()
+  )
+})
+
+const resultEntries = computed(() => {
+  if (entriesFilter.value === 'today') {
+    return todaysRecords.value
+  } else if (entriesFilter.value === 'month') {
+    return monthsRecords.value
+  }
+  return props.timeRecords
+})
 
 const handleEdit = (key) => {
   onHandle('editRecord', key)
@@ -19,7 +62,43 @@ const onHandle = (action, key) => {
 
 <template>
   <h3>{{ t('aside.title') }}</h3>
-  <ul tabindex="0" class="timekeeper-entry" v-for="(record, key) in timeRecords" :key="record.id">
+  <fieldset>
+    <legend>{{ t('aside.entry.filter.legend') }}:</legend>
+    <div class="filter-selection-buttons">
+      <div>
+        <label for="show-all">{{ t('aside.entry.filter.all') }}</label>
+        <input
+          type="radio"
+          id="show-all"
+          name="show-all-filter"
+          value="all"
+          v-model="entriesFilter"
+          checked
+        />
+      </div>
+      <div>
+        <label for="show-current-today">{{ t('aside.entry.filter.day') }}</label>
+        <input
+          type="radio"
+          id="show-today"
+          name="show-today-filter"
+          value="today"
+          v-model="entriesFilter"
+        />
+      </div>
+      <div>
+        <label for="show-current-month">{{ t('aside.entry.filter.month') }}</label>
+        <input
+          type="radio"
+          id="show-month"
+          name="show-month-filter"
+          value="month"
+          v-model="entriesFilter"
+        />
+      </div>
+    </div>
+  </fieldset>
+  <ul tabindex="0" class="timekeeper-entry" v-for="(record, key) in resultEntries" :key="record.id">
     <li>
       <label :for="record.babyActivity.entryId">{{ t('aside.entry.activity') }}</label
       ><output :id="record.babyActivity.entryId">{{ t(record.babyActivity.entryValue) }}</output>
@@ -90,5 +169,20 @@ ul.timekeeper-entry {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
   }
+}
+
+.filter-selection-buttons {
+  display: flex;
+  gap: 3rem;
+}
+fieldset {
+  display: inline-flex;
+  gap: 16px;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+legend {
+  display: contents;
 }
 </style>

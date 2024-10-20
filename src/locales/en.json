@@ -60,7 +60,13 @@
       "entryDate": "Entry date",
       "start": "Start",
       "end": "End",
-      "details": "Details"
+      "details": "Details",
+      "filter": {
+        "all": "Show all",
+        "day": "Today",
+        "month": "Month",
+        "legend": "Filter entries"
+      }
     },
     "edit": "Edit",
     "delete": "Delete",
