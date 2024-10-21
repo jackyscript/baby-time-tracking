@@ -1,52 +1,12 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
-import { computed, ref } from 'vue'
+import { useRecordsFilter } from '@/composables/time/recordsFilter.js'
 const { t } = useI18n()
 const props = defineProps(['timeRecords'])
 const timeRecords = props.timeRecords
 const emit = defineEmits(['editRecord', 'removeRecord'])
 
-const entriesFilter = ref('all')
-
-const filterRecords = function (filterByDate) {
-  const entries = {}
-  Object.entries(timeRecords)
-    .filter((record) => {
-      const attributes = record[1]
-      const entryDate = new Date(attributes.entryDate.entryValue)
-      const today = new Date()
-      return filterByDate(entryDate, today)
-    })
-    .forEach((filteredEntry) => {
-      const id = filteredEntry[0]
-      const attributes = filteredEntry[1]
-      entries[id] = attributes
-    })
-  return entries
-}
-
-const todaysRecords = computed(() => {
-  return filterRecords(
-    (entryDate, todayDate) => entryDate.setHours(0, 0, 0, 0) === todayDate.setHours(0, 0, 0, 0)
-  )
-})
-
-const monthsRecords = computed(() => {
-  return filterRecords(
-    (entryDate, todayDate) =>
-      entryDate.getMonth() === todayDate.getMonth() &&
-      entryDate.getFullYear() === todayDate.getFullYear()
-  )
-})
-
-const resultEntries = computed(() => {
-  if (entriesFilter.value === 'today') {
-    return todaysRecords.value
-  } else if (entriesFilter.value === 'month') {
-    return monthsRecords.value
-  }
-  return timeRecords
-})
+const { resultEntries, entriesFilter } = useRecordsFilter(timeRecords)
 
 const handleEdit = (key) => {
   onHandle('editRecord', key)
