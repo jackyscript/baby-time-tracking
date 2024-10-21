@@ -8,14 +8,14 @@ const emit = defineEmits(['editRecord', 'removeRecord'])
 
 const entriesFilter = ref('all')
 
-const filterRecords = function (filterCriterion) {
+const filterRecords = function (filterByDate) {
   const entries = {}
   Object.entries(timeRecords)
     .filter((record) => {
       const attributes = record[1]
       const entryDate = new Date(attributes.entryDate.entryValue)
       const today = new Date()
-      return filterCriterion(entryDate, today)
+      return filterByDate(entryDate, today)
     })
     .forEach((filteredEntry) => {
       const id = filteredEntry[0]
@@ -78,7 +78,7 @@ const onHandle = (action, key) => {
         />
       </div>
       <div>
-        <label for="show-current-today">{{ t('aside.entry.filter.day') }}</label>
+        <label for="show-today">{{ t('aside.entry.filter.day') }}</label>
         <input
           type="radio"
           id="show-today"
