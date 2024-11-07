@@ -65,7 +65,15 @@
         "all": "Show all",
         "day": "Today",
         "month": "Month",
-        "legend": "Filter entries"
+        "legend": "Filter entries",
+        "last": {
+          "three": {
+            "months": "Last three months"
+          },
+          "six": {
+            "months": "Last six months"
+          }
+        }
       }
     },
     "edit": "Edit",
@@ -73,6 +81,11 @@
     "buttonTitle": {
       "edit": "Edit this record",
       "delete": "Delete this record"
+    },
+    "result": {
+      "entries": {
+        "empty": "No entries available"
+      }
     }
   },
   "footer": {

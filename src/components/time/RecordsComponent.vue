@@ -6,7 +6,7 @@ const props = defineProps(['timeRecords'])
 const timeRecords = props.timeRecords
 const emit = defineEmits(['editRecord', 'removeRecord'])
 
-const { resultEntries, entriesFilter } = useRecordsFilter(timeRecords)
+const { resultEntries, entriesFilter, filterValues } = useRecordsFilter(timeRecords)
 
 const handleEdit = (key) => {
   onHandle('editRecord', key)
@@ -32,7 +32,7 @@ const onHandle = (action, key) => {
           type="radio"
           id="show-all"
           name="show-all-filter"
-          value="all"
+          :value="filterValues.noFilter"
           v-model="entriesFilter"
           checked
         />
@@ -43,7 +43,7 @@ const onHandle = (action, key) => {
           type="radio"
           id="show-today"
           name="show-today-filter"
-          value="today"
+          :value="filterValues.todayFilter"
           v-model="entriesFilter"
         />
       </div>
@@ -53,13 +53,40 @@ const onHandle = (action, key) => {
           type="radio"
           id="show-month"
           name="show-month-filter"
-          value="month"
+          :value="filterValues.monthFilter"
+          v-model="entriesFilter"
+        />
+      </div>
+      <div>
+        <label for="show-last-three-months">{{ t('aside.entry.filter.last.three.months') }}</label>
+        <input
+          type="radio"
+          id="show-last-three-months"
+          name="show-last-three-months-filter"
+          :value="filterValues.threeMonthsFilter"
+          v-model="entriesFilter"
+        />
+      </div>
+      <div>
+        <label for="show-last-six-months">{{ t('aside.entry.filter.last.six.months') }}</label>
+        <input
+          type="radio"
+          id="show-last-six-months"
+          name="show-last-six-months-filter"
+          :value="filterValues.sixMonthsFilter"
           v-model="entriesFilter"
         />
       </div>
     </div>
   </fieldset>
-  <ul tabindex="0" class="timekeeper-entry" v-for="(record, key) in resultEntries" :key="record.id">
+  <div v-if="Object.keys(resultEntries).length == 0">{{ t('aside.result.entries.empty') }}</div>
+  <ul
+    v-else
+    tabindex="0"
+    class="timekeeper-entry"
+    v-for="(record, key) in resultEntries"
+    :key="record.id"
+  >
     <li>
       <label :for="record.babyActivity.entryId">{{ t('aside.entry.activity') }}</label
       ><output :id="record.babyActivity.entryId">{{ t(record.babyActivity.entryValue) }}</output>

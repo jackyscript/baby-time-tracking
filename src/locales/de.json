@@ -65,7 +65,15 @@
         "all": "Zeige alle",
         "day": "Von heute",
         "month": "Von diesem Monat",
-        "legend": "Einträge filtern"
+        "legend": "Einträge filtern",
+        "last": {
+          "three": {
+            "months": "Die letzten drei Monate"
+          },
+          "six": {
+            "months": "Die letzten sechs Monate"
+          }
+        }
       }
     },
     "edit": "Bearbeiten",
@@ -73,6 +81,11 @@
     "buttonTitle": {
       "edit": "Bearbeite diesen Eintrag",
       "delete": "Entferne diesen Eintrag"
+    },
+    "result": {
+      "entries": {
+        "empty": "Keine Einträge vorhanden"
+      }
     }
   },
   "footer": {

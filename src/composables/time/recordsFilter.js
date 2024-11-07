@@ -4,6 +4,16 @@ export function useRecordsFilter(timeRecords) {
   const noFilterValue = 'all'
   const todayFilterValue = 'today'
   const monthFilterValue = 'month'
+  const threeMonthsFilterValue = 'lastThreeMonths'
+  const sixMonthsFilterValue = 'lastSixMonths'
+
+  const filterValues = {
+    noFilter: noFilterValue,
+    todayFilter: todayFilterValue,
+    monthFilter: monthFilterValue,
+    threeMonthsFilter: threeMonthsFilterValue,
+    sixMonthsFilter: sixMonthsFilterValue
+  }
 
   const entriesFilter = ref(noFilterValue)
 
@@ -38,14 +48,32 @@ export function useRecordsFilter(timeRecords) {
     )
   })
 
+  const lastThreeMonthsRecords = computed(() => {
+    return filterRecords((entryDate, todayDate) => {
+      const lastThreeMonthsDate = todayDate.getMonth() - 3
+      return entryDate >= lastThreeMonthsDate
+    })
+  })
+
+  const lastSixMonthsRecords = computed(() => {
+    return filterRecords((entryDate, todayDate) => {
+      const lastSixMonthsDate = todayDate.getMonth() - 6
+      return entryDate >= lastSixMonthsDate
+    })
+  })
+
   const resultEntries = computed(() => {
     if (entriesFilter.value === todayFilterValue) {
       return todaysRecords.value
     } else if (entriesFilter.value === monthFilterValue) {
       return monthsRecords.value
+    } else if (entriesFilter.value === threeMonthsFilterValue) {
+      return lastThreeMonthsRecords.value
+    } else if (entriesFilter.value === sixMonthsFilterValue) {
+      return lastSixMonthsRecords.value
     }
     return timeRecords
   })
 
-  return { resultEntries, entriesFilter }
+  return { resultEntries, entriesFilter, filterValues }
 }
