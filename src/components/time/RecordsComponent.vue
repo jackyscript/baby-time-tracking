@@ -38,26 +38,6 @@ const onHandle = (action, key) => {
         />
       </div>
       <div>
-        <label for="show-today">{{ t('aside.entry.filter.day') }}</label>
-        <input
-          type="radio"
-          id="show-today"
-          name="show-today-filter"
-          :value="filterValues.todayFilter"
-          v-model="entriesFilter"
-        />
-      </div>
-      <div>
-        <label for="show-current-month">{{ t('aside.entry.filter.month') }}</label>
-        <input
-          type="radio"
-          id="show-month"
-          name="show-month-filter"
-          :value="filterValues.monthFilter"
-          v-model="entriesFilter"
-        />
-      </div>
-      <div>
         <label for="show-last-three-months">{{ t('aside.entry.filter.last.three.months') }}</label>
         <input
           type="radio"
