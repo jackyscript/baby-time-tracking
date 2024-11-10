@@ -46,11 +46,10 @@ let toolbarActionInfo = ref('')
 
 const currentDate = new Date()
 const currentDay = currentDate.toISOString().substring(0, 10)
-const currentTime = currentDate.toISOString().substring(11, 16)
 
 entryDate.value = currentDay
-beginTime.value = currentTime
-endTime.value = currentTime
+//beginTime.value = currentTime
+//endTime.value = currentTime
 
 const saveToLocalStorageKey = 'savedRecords'
 const timeRecords = ref(JSON.parse(localStorage.getItem(saveToLocalStorageKey) ?? '{}'))
@@ -63,9 +62,10 @@ function addRecord() {
     let id = activeRecord === '' ? uuid() : activeRecord
 
     let currentRecord = {
+      entryId: uuid(),
       entryDate: { entryId: uuid(), entryValue: entryDate.value },
-      beginTime: { entryId: uuid(), entryValue: beginTime.value },
-      endTime: { entryId: uuid(), entryValue: endTime.value },
+      beginTime: { entryId: uuid(), entryValue: beginTime.value ? beginTime.value : null },
+      endTime: { entryId: uuid(), entryValue: endTime.value ? endTime.value : null },
       babyActivity: { entryId: uuid(), entryValue: babyActivity.value },
       details: { entryId: uuid(), entryValue: details.value }
     }
