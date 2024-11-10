@@ -23,42 +23,16 @@ const onHandle = (action, key) => {
 
 <template>
   <h3>{{ t('aside.title') }}</h3>
-  <fieldset>
-    <legend>{{ t('aside.entry.filter.legend') }}:</legend>
-    <div class="filter-selection-buttons">
-      <div>
-        <label for="show-all">{{ t('aside.entry.filter.all') }}</label>
-        <input
-          type="radio"
-          id="show-all"
-          name="show-all-filter"
-          :value="filterValues.noFilter"
-          v-model="entriesFilter"
-          checked
-        />
-      </div>
-      <div>
-        <label for="show-last-three-months">{{ t('aside.entry.filter.last.three.months') }}</label>
-        <input
-          type="radio"
-          id="show-last-three-months"
-          name="show-last-three-months-filter"
-          :value="filterValues.threeMonthsFilter"
-          v-model="entriesFilter"
-        />
-      </div>
-      <div>
-        <label for="show-last-six-months">{{ t('aside.entry.filter.last.six.months') }}</label>
-        <input
-          type="radio"
-          id="show-last-six-months"
-          name="show-last-six-months-filter"
-          :value="filterValues.sixMonthsFilter"
-          v-model="entriesFilter"
-        />
-      </div>
-    </div>
-  </fieldset>
+  <label for="filters">{{ t('aside.entry.filter.legend') }}:</label>
+  <select id="filters" v-model="entriesFilter">
+    <option
+      v-for="filterValue in Object.keys(filterValues)"
+      :key="filterValue"
+      :value="filterValue"
+    >
+      {{ t(filterValues[filterValue]) }}
+    </option>
+  </select>
   <div v-if="Object.keys(resultEntries).length == 0">{{ t('aside.result.entries.empty') }}</div>
   <section
     v-else

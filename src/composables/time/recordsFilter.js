@@ -8,11 +8,11 @@ export function useRecordsFilter(timeRecords) {
   const sixMonthsFilterValue = 'lastSixMonths'
 
   const filterValues = {
-    noFilter: noFilterValue,
-    todayFilter: todayFilterValue,
-    monthFilter: monthFilterValue,
-    threeMonthsFilter: threeMonthsFilterValue,
-    sixMonthsFilter: sixMonthsFilterValue
+    [noFilterValue]: 'aside.entry.filter.all',
+    [todayFilterValue]: 'aside.entry.filter.day',
+    [monthFilterValue]: 'aside.entry.filter.month',
+    [threeMonthsFilterValue]: 'aside.entry.filter.last.three.months',
+    [sixMonthsFilterValue]: 'aside.entry.filter.last.six.months'
   }
 
   const entriesFilter = ref(noFilterValue)
@@ -72,6 +72,7 @@ export function useRecordsFilter(timeRecords) {
     } else if (entriesFilter.value === sixMonthsFilterValue) {
       return lastSixMonthsRecords.value
     }
+
     return timeRecords
   })
 
