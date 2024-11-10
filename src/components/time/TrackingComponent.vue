@@ -48,8 +48,6 @@ const currentDate = new Date()
 const currentDay = currentDate.toISOString().substring(0, 10)
 
 entryDate.value = currentDay
-//beginTime.value = currentTime
-//endTime.value = currentTime
 
 const saveToLocalStorageKey = 'savedRecords'
 const timeRecords = ref(JSON.parse(localStorage.getItem(saveToLocalStorageKey) ?? '{}'))
