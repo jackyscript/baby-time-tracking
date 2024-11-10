@@ -60,59 +60,61 @@ const onHandle = (action, key) => {
     </div>
   </fieldset>
   <div v-if="Object.keys(resultEntries).length == 0">{{ t('aside.result.entries.empty') }}</div>
-  <ul
+  <section
     v-else
-    tabindex="0"
-    class="timekeeper-entry"
     v-for="(record, key) in resultEntries"
-    :key="record.id"
+    :key="record.entryId"
+    :id="record.entryId"
+    :href="'#' + record.entryId"
   >
-    <li>
-      <label :for="record.babyActivity.entryId">{{ t('aside.entry.activity') }}</label
-      ><output :id="record.babyActivity.entryId">{{ t(record.babyActivity.entryValue) }}</output>
-    </li>
-    <li>
-      <label :for="record.entryDate.entryId">{{ t('aside.entry.entryDate') }}</label
-      ><output :id="record.entryDate.entryId">
-        {{ new Date(record.entryDate.entryValue).toLocaleDateString() }}
-      </output>
-    </li>
-    <li>
-      <label :for="record.beginTime.entryId">{{ t('aside.entry.start') }}</label
-      ><output :id="record.beginTime.entryId">{{ record.beginTime.entryValue }}</output>
-    </li>
-    <li>
-      <label :for="record.endTime.entryId">{{ t('aside.entry.end') }}</label
-      ><output :id="record.endTime.entryId">{{ record.endTime.entryValue }}</output>
-    </li>
-    <li class="details-entry">
-      <label :for="record.details.entryId">{{ t('aside.entry.details') }}</label
-      ><output :id="record.details.entryId">{{ record.details.entryValue }}</output>
-    </li>
-    <li>
-      <button role="button" :title="t('aside.buttonTitle.edit')" @click="handleEdit(key)">
-        <img
-          aria-hidden="true"
-          src="../../assets/icons/edit.svg"
-          alt="{{t('aside.edit')}}"
-          width="30"
-          height="30"
-        />
-        <span hidden>{{ t('aside.edit') }}</span>
-      </button>
+    <ul tabindex="0" class="timekeeper-entry">
+      <li>
+        <label :for="record.babyActivity.entryId">{{ t('aside.entry.activity') }}</label
+        ><output :id="record.babyActivity.entryId">{{ t(record.babyActivity.entryValue) }}</output>
+      </li>
+      <li>
+        <label :for="record.entryDate.entryId">{{ t('aside.entry.entryDate') }}</label
+        ><output :id="record.entryDate.entryId">
+          {{ new Date(record.entryDate.entryValue).toLocaleDateString() }}
+        </output>
+      </li>
+      <li>
+        <label :for="record.beginTime.entryId">{{ t('aside.entry.start') }}</label
+        ><output :id="record.beginTime.entryId">{{ record.beginTime.entryValue }}</output>
+      </li>
+      <li>
+        <label :for="record.endTime.entryId">{{ t('aside.entry.end') }}</label
+        ><output :id="record.endTime.entryId">{{ record.endTime.entryValue }}</output>
+      </li>
+      <li class="details-entry">
+        <label :for="record.details.entryId">{{ t('aside.entry.details') }}</label
+        ><output :id="record.details.entryId">{{ record.details.entryValue }}</output>
+      </li>
+      <li>
+        <button role="button" :title="t('aside.buttonTitle.edit')" @click="handleEdit(key)">
+          <img
+            aria-hidden="true"
+            src="../../assets/icons/edit.svg"
+            alt="{{t('aside.edit')}}"
+            width="30"
+            height="30"
+          />
+          <span hidden>{{ t('aside.edit') }}</span>
+        </button>
 
-      <button role="button" :title="t('aside.buttonTitle.delete')" @click="handleRemove(key)">
-        <img
-          aria-hidden="true"
-          src="../../assets/icons/delete.svg"
-          alt="{{t('aside.delete')}}"
-          width="30"
-          height="30"
-        />
-        <span hidden>{{ t('aside.delete') }}</span>
-      </button>
-    </li>
-  </ul>
+        <button role="button" :title="t('aside.buttonTitle.delete')" @click="handleRemove(key)">
+          <img
+            aria-hidden="true"
+            src="../../assets/icons/delete.svg"
+            alt="{{t('aside.delete')}}"
+            width="30"
+            height="30"
+          />
+          <span hidden>{{ t('aside.delete') }}</span>
+        </button>
+      </li>
+    </ul>
+  </section>
 </template>
 
 <style scoped>
