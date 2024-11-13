@@ -6,26 +6,13 @@ import ToolbarMenuComponent from '../toolbar/ToolbarMenuComponent.vue'
 import AlertComponent from '../AlertComponent.vue'
 import { v4 as uuid } from 'uuid'
 import { useI18n } from 'vue-i18n'
-import { createNotification } from '../../utils/notification.js'
-import { resetConfirmationForm } from '../../utils/confirmation.js'
+import { createNotification } from '@/utils/notification.js'
+import { resetConfirmationForm } from '@/utils/confirmation.js'
+import { activityTypes } from '@/activities/activities.js'
 
 const { t } = useI18n()
 
 const defaultTitle = 'main.title'
-
-const activityTypes = [
-  'main.activity.wasBreastFed',
-  'main.activity.wasBottleFed',
-  'main.activity.wasFed',
-  'main.activity.drankWater',
-  'main.activity.drankTea',
-  'main.activity.bathing',
-  'main.activity.playing',
-  'main.activity.crying',
-  'main.activity.sleeping',
-  'main.activity.pee',
-  'main.activity.poo'
-]
 
 let formTitle = ref('')
 formTitle.value = defaultTitle
