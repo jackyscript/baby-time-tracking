@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRecordsFilter } from '@/composables/time/recordsFilter.js'
 const { t } = useI18n()
@@ -7,6 +8,10 @@ const timeRecords = props.timeRecords
 const emit = defineEmits(['editRecord', 'removeRecord'])
 
 const { resultEntries, entriesFilter, filterValues } = useRecordsFilter(timeRecords)
+
+const entriesEmpty = computed(() => {
+  return Object.keys(resultEntries.value).length == 0
+})
 
 const handleEdit = (key) => {
   onHandle('editRecord', key)
@@ -33,7 +38,7 @@ const onHandle = (action, key) => {
       {{ t(filterValues[filterValue]) }}
     </option>
   </select>
-  <div v-if="Object.keys(resultEntries).length == 0">{{ t('aside.result.entries.empty') }}</div>
+  <div v-if="entriesEmpty">{{ t('aside.result.entries.empty') }}</div>
   <section
     v-else
     v-for="(record, key) in resultEntries"
