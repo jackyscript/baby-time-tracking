@@ -100,7 +100,9 @@
   },
   "record": {
     "added": "Die Baby-Aktivität wurde eingetragen",
-    "canceled": "Die aktuelle Eintragung wurde abgebrochen und das Formular wurde zurückgesetzt"
+    "canceled": "Die aktuelle Eintragung wurde abgebrochen und das Formular wurde zurückgesetzt",
+    "edit": "Eintrag zur Bearbeitung ausgewählt",
+    "deleted": "Eintrag entfernt"
   },
   "records": {
     "saved": "Die Baby-Aktivitätseinträge wurden gespeichert",
@@ -113,7 +115,9 @@
     "addRecord": "Eintrag ergänzt",
     "entry": {
       "mandatory": "Eintragung erforderlich"
-    }
+    },
+    "editRecord": "Bearbeite Eintrag",
+    "deleteRecord": "Entferne Eintrag"
   },
   "save": {
     "records": {

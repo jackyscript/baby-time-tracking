@@ -141,6 +141,8 @@ function editRecord(key) {
     entryDate.value = timeRecord.entryDate.entryValue
     babyActivity.value = timeRecord.babyActivity.entryValue
     details.value = timeRecord.details.entryValue
+
+    createNotification(t('notify.editRecord'), t('record.edit'))
   })(timeRecords.value[activeRecord])
 
   formTitle.value = 'main.edit.title'
@@ -149,6 +151,7 @@ function editRecord(key) {
 function removeRecord(key) {
   delete timeRecords.value[key]
 
+  createNotification(t('notify.deleteRecord'), t('record.deleted'))
   formTitle.value = defaultTitle
 }
 </script>
