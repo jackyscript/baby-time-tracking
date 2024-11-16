@@ -1,7 +1,11 @@
+import { computed } from 'vue'
+
 export function useRecordsComparator(records) {
-  const sortedEntries = Object.entries(records.value).sort(recordsComparator())
-  const sortedRecords = Object.fromEntries(sortedEntries)
-  return sortedRecords
+  return computed(() => {
+    const sortedEntries = Object.entries(records.value).sort(recordsComparator())
+    const sortedRecords = Object.fromEntries(sortedEntries)
+    return sortedRecords
+  })
 }
 
 function recordsComparator() {
@@ -15,5 +19,12 @@ function recordsComparator() {
 }
 
 function parseRecordDateValue(recordAttributes) {
-  return Date.parse(recordAttributes['entryDate'].entryValue)
+  const recordDateValue = recordAttributes['entryDate'].entryValue
+  const recordBeginTimeValue = recordAttributes['beginTime'].entryValue
+  const dateTimeValue = `${recordDateValue}T${recordBeginTimeValue}` // Format: 2019-01-01T00:00:00
+  if (recordBeginTimeValue) {
+    return Date.parse(dateTimeValue)
+  } else {
+    return Date.parse(recordDateValue) // discard time if not defined
+  }
 }

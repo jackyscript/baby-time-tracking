@@ -9,7 +9,7 @@ const timeRecords = props.timeRecords
 const emit = defineEmits(['editRecord', 'removeRecord'])
 
 const { resultEntries, entriesFilter, filterValues } = useRecordsFilter(timeRecords)
-const sortedEntries = computed(() => useRecordsComparator(resultEntries))
+const sortedEntries = useRecordsComparator(resultEntries)
 
 const entriesEmpty = computed(() => {
   return Object.keys(resultEntries.value).length == 0
