@@ -2,12 +2,14 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRecordsFilter } from '@/composables/time/recordsFilter.js'
+import { useRecordsComparator } from '@/composables/time/recordsComparator.js'
 const { t } = useI18n()
 const props = defineProps(['timeRecords'])
 const timeRecords = props.timeRecords
 const emit = defineEmits(['editRecord', 'removeRecord'])
 
 const { resultEntries, entriesFilter, filterValues } = useRecordsFilter(timeRecords)
+const sortedEntries = computed(() => useRecordsComparator(resultEntries))
 
 const entriesEmpty = computed(() => {
   return Object.keys(resultEntries.value).length == 0
@@ -41,7 +43,7 @@ const onHandle = (action, key) => {
   <div v-if="entriesEmpty">{{ t('aside.result.entries.empty') }}</div>
   <section
     v-else
-    v-for="(record, key) in resultEntries"
+    v-for="(record, key) in sortedEntries"
     :key="record.entryId"
     :id="record.entryId"
     :href="'#' + record.entryId"
