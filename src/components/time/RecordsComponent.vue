@@ -1,5 +1,4 @@
 <script setup>
-import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRecordsFilter } from '@/composables/time/recordsFilter.js'
 import { useRecordsComparator } from '@/composables/time/recordsComparator.js'
