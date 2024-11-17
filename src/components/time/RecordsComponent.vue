@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRecordsFilter } from '@/composables/time/recordsFilter.js'
 import { useRecordsComparator } from '@/composables/time/recordsComparator.js'
+import { useRecordsValidator } from '@/composables/time/recordsValidator.js'
 const { t } = useI18n()
 const props = defineProps(['timeRecords'])
 const timeRecords = props.timeRecords
@@ -11,9 +12,7 @@ const emit = defineEmits(['editRecord', 'removeRecord'])
 const { resultEntries, entriesFilter, filterValues } = useRecordsFilter(timeRecords)
 const sortedEntries = useRecordsComparator(resultEntries)
 
-const entriesEmpty = computed(() => {
-  return Object.keys(resultEntries.value).length == 0
-})
+const entriesEmpty = useRecordsValidator(sortedEntries)
 
 const handleEdit = (key) => {
   onHandle('editRecord', key)
