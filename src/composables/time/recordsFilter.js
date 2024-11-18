@@ -18,20 +18,13 @@ export function useRecordsFilter(timeRecords) {
   const entriesFilter = ref(noFilterValue)
 
   const filterRecords = function (filterCriterion) {
-    const entries = {}
-    Object.entries(timeRecords)
-      .filter((record) => {
-        const attributes = record[1]
-        const entryDate = new Date(attributes.entryDate.entryValue)
-        const today = new Date()
-        return filterCriterion(entryDate, today)
-      })
-      .forEach((filteredEntry) => {
-        const id = filteredEntry[0]
-        const attributes = filteredEntry[1]
-        entries[id] = attributes
-      })
-    return entries
+    const entries = Object.entries(timeRecords).filter((record) => {
+      const attributes = record[1]
+      const entryDate = new Date(attributes.entryDate.entryValue)
+      const today = new Date()
+      return filterCriterion(entryDate, today)
+    })
+    return Object.fromEntries(entries)
   }
 
   const todaysRecords = computed(() => {

@@ -119,4 +119,19 @@ ul.timekeeper-entry {
     grid-row-gap: 0px;
   }
 }
+
+.filter-selection-buttons {
+  display: flex;
+  gap: 3rem;
+}
+fieldset {
+  display: inline-flex;
+  gap: 16px;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+legend {
+  display: contents;
+}
 </style>
