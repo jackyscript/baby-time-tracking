@@ -102,6 +102,7 @@ function confirmSaveRecords() {
 function confirmDeleteAll() {
   if (t('delete.records.confirm').toLowerCase() === deleteConfirmationText.value.toLowerCase()) {
     localStorage.removeItem(saveToLocalStorageKey)
+    Object.keys(timeRecords.value).forEach((key) => delete timeRecords.value[key])
     toolbarActionInfo.value = t('records.deleted')
 
     createNotification(t('notify.deleteAll'), t('records.deleted'))
