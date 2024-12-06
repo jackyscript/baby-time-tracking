@@ -9,7 +9,7 @@ import { useI18n } from 'vue-i18n'
 import { createNotification } from '@/utils/notification.js'
 import { resetConfirmationForm } from '@/utils/confirmation.js'
 import { activityTypes } from '@/activities/activities.js'
-import { StorageConstants } from '@/utils/storage.js'
+import { savedRecordsExist, getSavedRecords, storeRecords, removeRecords } from '@/utils/storage.js'
 
 const { t } = useI18n()
 
@@ -37,9 +37,7 @@ const currentDay = currentDate.toISOString().substring(0, 10)
 
 entryDate.value = currentDay
 
-const timeRecords = ref(
-  JSON.parse(localStorage.getItem(StorageConstants.recordsStorageKey) ?? '{}')
-)
+const timeRecords = ref(getSavedRecords())
 
 function addRecord() {
   if (babyActivity.value === '') {
@@ -68,10 +66,7 @@ function addRecord() {
 
 function showSaveRecordsConfirmation() {
   resetDeleteAll()
-  const localStorageDataExists = JSON.parse(
-    localStorage.getItem(StorageConstants.recordsStorageKey)
-  )
-  if (!localStorageDataExists) {
+  if (!savedRecordsExist()) {
     saveRecordsConfirmation.value = true
   } else {
     saveRecords()
@@ -92,7 +87,7 @@ function resetDeleteAll() {
 }
 
 function saveRecords() {
-  localStorage.setItem(StorageConstants.recordsStorageKey, JSON.stringify(timeRecords.value))
+  storeRecords(timeRecords.value)
   toolbarActionInfo.value = t('records.saved')
 
   createNotification(t('notify.saveRecords'), t('records.saved'))
@@ -105,7 +100,7 @@ function confirmSaveRecords() {
 
 function confirmDeleteAll() {
   if (t('delete.records.confirm').toLowerCase() === deleteConfirmationText.value.toLowerCase()) {
-    localStorage.removeItem(StorageConstants.recordsStorageKey)
+    removeRecords()
     Object.keys(timeRecords.value).forEach((key) => delete timeRecords.value[key])
     toolbarActionInfo.value = t('records.deleted')
 
