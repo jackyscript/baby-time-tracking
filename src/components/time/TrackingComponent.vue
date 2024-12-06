@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import RecordsComponent from './RecordsComponent.vue'
 import SaveRecordsConfirmationComponent from '../confirmation/SaveRecordsConfirmationComponent.vue'
 import ToolbarMenuComponent from '../toolbar/ToolbarMenuComponent.vue'
@@ -38,6 +38,14 @@ const currentDay = currentDate.toISOString().substring(0, 10)
 entryDate.value = currentDay
 
 const timeRecords = ref(getSavedRecords())
+
+onMounted(() => {
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && savedRecordsExist()) {
+      storeRecords(timeRecords.value)
+    }
+  })
+})
 
 function addRecord() {
   if (babyActivity.value === '') {
