@@ -10,6 +10,7 @@ import { createNotification } from '@/utils/notification.js'
 import { resetConfirmationForm } from '@/utils/confirmation.js'
 import { activityTypes } from '@/activities/activities.js'
 import { savedRecordsExist, getSavedRecords, storeRecords, removeRecords } from '@/utils/storage.js'
+import DeleteRecordsConfirmationComponent from '../confirmation/DeleteRecordsConfirmationComponent.vue'
 
 const { t } = useI18n()
 
@@ -169,25 +170,12 @@ function removeRecord(key) {
     @confirm-save-records="confirmSaveRecords"
     @reset-confirm-save-records="resetConfirmSaveRecords"
   />
-  <section v-if="deleteAllRecordsConfirmation">
-    <form role="form" @submit.prevent="confirmDeleteAll">
-      <label for="deleteAllRecordsConfirmation">{{ t('delete.records.confirmation') }}</label>
-      <input
-        type="text"
-        name="deleteAllRecordsConfirmation"
-        id="deleteAllRecordsConfirmation"
-        v-model="deleteConfirmationText"
-      />
-      <div class="grid">
-        <button type="button" class="contrast" role="button" @click="confirmDeleteAll">
-          {{ t('delete.records.confirm') }}
-        </button>
-        <button type="button" class="secondary" role="button" @click="resetDeleteAll">
-          {{ t('delete.records.cancel') }}
-        </button>
-      </div>
-    </form>
-  </section>
+  <DeleteRecordsConfirmationComponent
+    :deleteAllRecordsConfirmation
+    @confirm-delete-all="confirmDeleteAll"
+    @reset-delete-all="resetDeleteAll"
+    v-model="deleteConfirmationText"
+  />
   <form role="form">
     <label for="activities">{{ t('main.form.label.activity') }}</label>
     <select
