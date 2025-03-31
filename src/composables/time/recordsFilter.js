@@ -43,15 +43,17 @@ export function useRecordsFilter(timeRecords) {
 
   const lastThreeMonthsRecords = computed(() => {
     return filterRecords((entryDate, todayDate) => {
-      const lastThreeMonthsDate = todayDate.getMonth() - 3
-      return entryDate >= lastThreeMonthsDate
+      const threeMonthsAgo = new Date(todayDate)
+      threeMonthsAgo.setMonth(todayDate.getMonth() - 3)
+      return entryDate >= threeMonthsAgo && entryDate <= todayDate
     })
   })
 
   const lastSixMonthsRecords = computed(() => {
     return filterRecords((entryDate, todayDate) => {
-      const lastSixMonthsDate = todayDate.getMonth() - 6
-      return entryDate >= lastSixMonthsDate
+      const sixMonthsAgo = new Date(todayDate)
+      sixMonthsAgo.setMonth(todayDate.getMonth() - 6)
+      return entryDate >= sixMonthsAgo && entryDate <= todayDate
     })
   })
 
