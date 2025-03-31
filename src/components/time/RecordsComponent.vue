@@ -1,14 +1,19 @@
 <script setup>
+import { toRefs } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRecordsFilter } from '@/composables/time/recordsFilter.js'
 import { useRecordsComparator } from '@/composables/time/recordsComparator.js'
 import { useRecordsValidator } from '@/composables/time/recordsValidator.js'
+import { useTimeRecordsStore } from '@/composables/stores/timeRecordsStore.js'
+import { storeToRefs } from 'pinia'
+
 const { t } = useI18n()
-const props = defineProps(['timeRecords'])
-const timeRecords = props.timeRecords
 const emit = defineEmits(['editRecord', 'removeRecord'])
 
-const { resultEntries, entriesFilter, filterValues } = useRecordsFilter(timeRecords)
+const store = useTimeRecordsStore()
+const { timeRecords } = storeToRefs(store)
+const { resultEntries, entriesFilter } = toRefs(useRecordsFilter(timeRecords.value))
+const { filterValues } = useRecordsFilter(timeRecords.value)
 const sortedEntries = useRecordsComparator(resultEntries)
 
 const entriesEmpty = useRecordsValidator(sortedEntries)

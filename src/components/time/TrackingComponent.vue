@@ -9,8 +9,9 @@ import { useI18n } from 'vue-i18n'
 import { createNotification } from '@/utils/notification.js'
 import { resetConfirmationForm } from '@/utils/confirmation.js'
 import { activityTypes } from '@/activities/activities.js'
-import { savedRecordsExist, getSavedRecords, storeRecords, removeRecords } from '@/utils/storage.js'
 import DeleteRecordsConfirmationComponent from '../confirmation/DeleteRecordsConfirmationComponent.vue'
+import { useTimeRecordsStore } from '@/composables/stores/timeRecordsStore.js'
+import { storeToRefs } from 'pinia'
 
 const { t } = useI18n()
 
@@ -38,12 +39,13 @@ const currentDay = currentDate.toISOString().substring(0, 10)
 
 entryDate.value = currentDay
 
-const timeRecords = ref(getSavedRecords())
+const store = useTimeRecordsStore()
+const { timeRecords } = storeToRefs(store)
 
 onMounted(() => {
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden && savedRecordsExist()) {
-      storeRecords(timeRecords.value)
+    if (document.hidden && store.savedRecordsExist()) {
+      store.storeRecords()
     }
   })
 })
@@ -75,7 +77,7 @@ function addRecord() {
 
 function showSaveRecordsConfirmation() {
   resetDeleteAll()
-  if (!savedRecordsExist()) {
+  if (!store.savedRecordsExist()) {
     saveRecordsConfirmation.value = true
   } else {
     saveRecords()
@@ -96,7 +98,7 @@ function resetDeleteAll() {
 }
 
 function saveRecords() {
-  storeRecords(timeRecords.value)
+  store.storeRecords()
   toolbarActionInfo.value = t('records.saved')
 
   createNotification(t('notify.saveRecords'), t('records.saved'))
@@ -109,8 +111,7 @@ function confirmSaveRecords() {
 
 function confirmDeleteAll() {
   if (t('delete.records.confirm').toLowerCase() === deleteConfirmationText.value.toLowerCase()) {
-    removeRecords()
-    Object.keys(timeRecords.value).forEach((key) => delete timeRecords.value[key])
+    store.removeRecords()
     toolbarActionInfo.value = t('records.deleted')
 
     createNotification(t('notify.deleteAll'), t('records.deleted'))
@@ -214,11 +215,7 @@ function removeRecord(key) {
   </form>
 
   <aside role="complementary">
-    <RecordsComponent
-      :timeRecords="timeRecords"
-      @edit-record="editRecord"
-      @remove-record="removeRecord"
-    />
+    <RecordsComponent @edit-record="editRecord" @remove-record="removeRecord" />
   </aside>
 </template>
 
