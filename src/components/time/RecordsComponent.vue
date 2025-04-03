@@ -23,6 +23,7 @@ const handleEdit = (key) => {
 }
 
 const handleRemove = (key) => {
+  delete timeRecords.value[key]
   onHandle('removeRecord', key)
 }
 

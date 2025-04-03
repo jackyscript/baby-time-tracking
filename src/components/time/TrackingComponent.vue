@@ -145,8 +145,7 @@ function editRecord(key) {
   formTitle.value = 'main.edit.title'
 }
 
-function removeRecord(key) {
-  delete timeRecords.value[key]
+function removeRecord() {
 
   createNotification(t('notify.deleteRecord'), t('record.deleted'))
   formTitle.value = defaultTitle
