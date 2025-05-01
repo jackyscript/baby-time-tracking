@@ -55,15 +55,15 @@ function addRecord() {
     toolbarActionInfo.value = t('main.activity.unselected')
     createNotification(t('notify.entry.mandatory'), t('main.activity.unselected'))
   } else {
-    let id = activeRecord === '' ? uuid() : activeRecord
+    let id = activeRecord === '' ? crypto.randomUUID() : activeRecord
 
     let currentRecord = {
-      entryId: uuid(),
-      entryDate: { entryId: uuid(), entryValue: entryDate.value },
-      beginTime: { entryId: uuid(), entryValue: beginTime.value ? beginTime.value : null },
-      endTime: { entryId: uuid(), entryValue: endTime.value ? endTime.value : null },
-      babyActivity: { entryId: uuid(), entryValue: babyActivity.value },
-      details: { entryId: uuid(), entryValue: details.value }
+      entryId: crypto.randomUUID(),
+      entryDate: { entryId: crypto.randomUUID(), entryValue: entryDate.value },
+      beginTime: { entryId: crypto.randomUUID(), entryValue: beginTime.value ? beginTime.value : null },
+      endTime: { entryId: crypto.randomUUID(), entryValue: endTime.value ? endTime.value : null },
+      babyActivity: { entryId: crypto.randomUUID(), entryValue: babyActivity.value },
+      details: { entryId: crypto.randomUUID(), entryValue: details.value }
     }
 
     timeRecords.value[id] = currentRecord
