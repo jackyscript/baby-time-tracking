@@ -44,7 +44,7 @@ const onHandle = (action, key) => {
       {{ t(filterValues[filterValue]) }}
     </option>
   </select>
-  <div v-if="entriesEmpty">{{ t('aside.result.entries.empty') }}</div>
+  <section v-if="entriesEmpty">{{ t('aside.result.entries.empty') }}</section>
   <section
     v-else
     v-for="(record, key) in sortedEntries"

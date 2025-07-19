@@ -24,7 +24,6 @@ function changeLocale(locale) {
   <nav>
     <ul>
       <li>
-        <strong>{{ t('nav.title') }}</strong>
       </li>
     </ul>
     <ul>

@@ -4,7 +4,7 @@ import TrackingComponent from './components/time/TrackingComponent.vue'
 </script>
 
 <template>
-  <header role="banner">
+  <header role="banner" class="container-fluid">
     <h1>{{ $t('header.title') }}</h1>
     <a href="#main">{{ $t('header.main') }}</a>
     <NavComponent></NavComponent>

@@ -59,7 +59,10 @@ function addRecord() {
     let currentRecord = {
       entryId: crypto.randomUUID(),
       entryDate: { entryId: crypto.randomUUID(), entryValue: entryDate.value },
-      beginTime: { entryId: crypto.randomUUID(), entryValue: beginTime.value ? beginTime.value : null },
+      beginTime: {
+        entryId: crypto.randomUUID(),
+        entryValue: beginTime.value ? beginTime.value : null
+      },
       endTime: { entryId: crypto.randomUUID(), entryValue: endTime.value ? endTime.value : null },
       babyActivity: { entryId: crypto.randomUUID(), entryValue: babyActivity.value },
       details: { entryId: crypto.randomUUID(), entryValue: details.value }
@@ -145,7 +148,6 @@ function editRecord(key) {
 }
 
 function removeRecord() {
-
   createNotification(t('notify.deleteRecord'), t('record.deleted'))
   formTitle.value = defaultTitle
 }
@@ -213,7 +215,7 @@ function removeRecord() {
   </form>
 
   <aside role="complementary">
-    <RecordsComponent @edit-record="editRecord" @remove-record="removeRecord" />
+      <RecordsComponent @edit-record="editRecord" @remove-record="removeRecord" />
   </aside>
 </template>
 
