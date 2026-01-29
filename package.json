@@ -12,18 +12,18 @@
     "svg-minify": "svgo -f src/assets/icons -o src/assets/icons/minify"
   },
   "dependencies": {
-    "@kyvg/vue3-notification": "^3.2.1",
-    "pinia": "^3.0.1",
-    "vue": "^3.4.29",
-    "vue-i18n": "^9.14.5"
+    "@kyvg/vue3-notification": "^3.4.2",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.27",
+    "vue-i18n": "^11.2.8"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.8.0",
-    "@vitejs/plugin-vue": "^5.0.5",
-    "@vue/eslint-config-prettier": "^9.0.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-vue": "^9.23.0",
-    "prettier": "^3.2.5",
-    "vite": "^6.4.1"
+    "@rushstack/eslint-patch": "^1.15.0",
+    "@vitejs/plugin-vue": "^6.0.3",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "eslint": "^9.39.2",
+    "eslint-plugin-vue": "^10.7.0",
+    "prettier": "^3.8.1",
+    "vite": "^7.3.1"
   }
 }
