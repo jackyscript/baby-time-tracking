@@ -1,20 +1,41 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { ref, computed } from "vue";
+
 const { t, availableLocales, locale } = useI18n()
 const supportedLocales = {
   en: { name: 'English' },
   de: { name: 'Deutsch' }
 }
 
-const colorThemeAttribute = 'data-theme'
-
 function darken() {
-  document.documentElement.setAttribute(colorThemeAttribute, 'dark')
+  currentTheme.value = "dark";
+  document.documentElement.setAttribute("data-theme", "dark");
 }
 
 function brighten() {
-  document.documentElement.setAttribute(colorThemeAttribute, 'light')
+  currentTheme.value = "light";
+  document.documentElement.setAttribute("data-theme", "light");
 }
+
+const preferredTheme = computed(() => {
+  if (import.meta.client) {
+    // Check if the client supports prefers-color-scheme
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+  return "light"; // Default to light if not in client context
+});
+
+const currentTheme = ref(preferredTheme.value);
+
+if (import.meta.client) {
+  watchEffect(() => {
+    document.documentElement.setAttribute("class", currentTheme.value);
+  });
+}
+
 
 function changeLocale(locale) {
   document.documentElement.setAttribute('lang', locale)
@@ -27,20 +48,24 @@ function changeLocale(locale) {
       </li>
     </ul>
     <ul>
-      <li>
-        <button role="button" :title="t('nav.toolbar.darken')" @click="darken">
-          <img aria-hidden="true" src="../assets/icons/darken.svg" :alt="t('nav.toolbar.darken')" />
-          <span hidden>{{ t('nav.toolbar.darken') }}</span>
+      <li v-if="currentTheme === 'light'">
+        <button role="button" :title="t('nav.toolbar.darken')" class="primary" @click="darken">
+          <img
+            aria-hidden="true"
+            src="../assets/icons/darken.svg"
+            :alt="t('nav.toolbar.darken')"
+          />
+          <span hidden>Darken</span>
         </button>
       </li>
-      <li>
-        <button role="button" :title="t('nav.toolbar.brighten')" @click="brighten">
+      <li v-else>
+        <button role="button" :title="t('nav.toolbar.brighten')" class="primary" @click="brighten">
           <img
             aria-hidden="true"
             src="../assets/icons/brighten.svg"
             :alt="t('nav.toolbar.brighten')"
           />
-          <span hidden>{{ t('nav.toolbar.brighten') }}</span>
+          <span hidden>Brighten</span>
         </button>
       </li>
       <li>
@@ -63,6 +88,15 @@ function changeLocale(locale) {
 button > img {
   width: 20px;
   height: 20px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  min-height: 2rem;
+  border-radius: 1rem;
 }
 
 nav {
