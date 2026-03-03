@@ -79,8 +79,20 @@ menu {
   margin: 0; /* Remove margins */
 }
 
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+}
+
 button > img {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 </style>
