@@ -1,4 +1,5 @@
 import './assets/pico.indigo.min.css'
+import './styles/notifications.css'
 
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
