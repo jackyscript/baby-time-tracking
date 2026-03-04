@@ -1,6 +1,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
-import { ref, computed, watchEffect } from 'vue'
+import { ref, computed, watchEffect, watch } from 'vue'
 
 const { t, availableLocales, locale } = useI18n()
 const supportedLocales = {
@@ -18,6 +18,8 @@ function brighten() {
   document.documentElement.setAttribute('data-theme', 'light')
 }
 
+const currentTheme = ref('light')
+
 const preferredTheme = computed(() => {
   if (import.meta.client) {
     // Check if the client supports prefers-color-scheme
@@ -26,9 +28,17 @@ const preferredTheme = computed(() => {
   return 'light' // Default to light if not in client context
 })
 
-const currentTheme = ref(preferredTheme.value)
-
 if (import.meta.client) {
+  // Initialize theme on mount based on system preference
+  watch(
+    preferredTheme,
+    (newTheme) => {
+      currentTheme.value = newTheme
+      document.documentElement.setAttribute('data-theme', newTheme)
+    },
+    { immediate: true }
+  )
+
   watchEffect(() => {
     document.documentElement.setAttribute('class', currentTheme.value)
   })
