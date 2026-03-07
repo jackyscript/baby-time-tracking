@@ -46,7 +46,7 @@ if (import.meta.client) {
 
 // Theme switch computed: true when theme is light, false when dark.
 const themeSwitch = computed({
-  get: () => currentTheme.value === 'light',
+  get: () => preferredTheme.value,
   set: (val) => {
     if (val) brighten()
     else darken()
