@@ -92,8 +92,6 @@ const onHandle = (action, key) => {
             aria-hidden="true"
             src="../../assets/icons/delete.svg"
             alt="{{t('aside.delete')}}"
-            width="30"
-            height="30"
           />
           <span hidden>{{ t('aside.delete') }}</span>
         </button>
@@ -139,5 +137,23 @@ fieldset {
 }
 legend {
   display: contents;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  margin-right: 8px !important;
+}
+
+button > img {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 </style>
