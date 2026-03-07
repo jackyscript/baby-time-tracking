@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 
 export function useRecordsFilter(timeRecords) {
   const noFilterValue = 'all'
@@ -71,5 +71,5 @@ export function useRecordsFilter(timeRecords) {
     return timeRecords
   })
 
-  return { resultEntries, entriesFilter, filterValues }
+  return reactive({ resultEntries, entriesFilter, filterValues })
 }
